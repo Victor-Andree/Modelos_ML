@@ -16,6 +16,7 @@ class ArimaPredictor:
         self.target_col = target_col
         self.y_real_totales = []
         self.predicciones_totales = []
+        self.conteo_series = {}
         
         
     def _determinar_d(self, serie):
@@ -67,7 +68,15 @@ class ArimaPredictor:
         print("Iniciando entrenamiento ARIMA (Iteracion por Sucursal y Producto)...")
         
         self.df[self.date_col] = pd.to_datetime(self.df[self.date_col])
-        grupos = self.df.groupby(['sucursal', 'producto'])
+        grupos = self.df.groupby(['sucursal', 'producto'], observed=True)
+        # Reiniciar acumuladores en cada ejecución; potenciales es el producto cartesiano observado.
+        self.y_real_totales = []
+        self.predicciones_totales = []
+        self.conteo_series = {
+            'potenciales': self.df['sucursal'].nunique() * self.df['producto'].nunique(),
+            'encontradas': grupos.ngroups,
+            'descartadas': 0, 'fallidas': 0, 'modeladas': 0
+        }
         
         for nombre_grupo, df_grupo in grupos:
             sucursal, producto = nombre_grupo
@@ -76,6 +85,7 @@ class ArimaPredictor:
             df_serie = df_grupo.set_index(self.date_col).resample('W')[self.target_col].sum().fillna(0)
             
             if len(df_serie) < 20:
+                self.conteo_series['descartadas'] += 1
                 continue
                 
             # Partición temporal estricta (Evita el Data Leakage)
@@ -84,28 +94,38 @@ class ArimaPredictor:
             test = df_serie[df_serie.index >= '2026-01-01']
             
             if len(train) < 10 or len(test) < 2:
+                self.conteo_series['descartadas'] += 1
                 continue
                 
-            # 1. Determinar parámetro 'd'
-            d_optimo = self._determinar_d(train)
-            
-            # 2. Determinar parámetros 'p' y 'q' óptimos
-            mejor_orden = self._optimizar_pq(train, d_optimo)
-            
-            # 3. Entrenar el modelo final para esta sucursal/producto
             try:
+                # 1. Determinar parámetro 'd'
+                d_optimo = self._determinar_d(train)
+
+                # 2. Determinar parámetros 'p' y 'q' óptimos
+                mejor_orden = self._optimizar_pq(train, d_optimo)
+
+                # 3. Entrenar el modelo final para esta sucursal/producto
                 modelo = ARIMA(train, order=mejor_orden)
                 modelo_fit = modelo.fit()
                 
                 # 4. Proyectar sobre el periodo de prueba (2026)
                 predicciones = modelo_fit.forecast(steps=len(test))
                 
+                if not np.isfinite(predicciones).all():
+                    raise ValueError('Pronóstico ARIMA no finito')
+
                 # Acumular resultados para el cálculo global
                 self.y_real_totales.extend(test.values)
                 self.predicciones_totales.extend(predicciones.values)
+                self.conteo_series['modeladas'] += 1
                 
             except Exception:
+                self.conteo_series['fallidas'] += 1
                 continue
+
+        print(f'Resumen de series ARIMA: {self.conteo_series}')
+        if not self.conteo_series['modeladas']:
+            raise ValueError('No se modeló ninguna serie; revisar conteo_series.')
 
         # 5. Calcular métricas globales consolidadadas (R2, MAE, RMSE)
         mae = mean_absolute_error(self.y_real_totales, self.predicciones_totales)
@@ -114,9 +134,9 @@ class ArimaPredictor:
         
         metricas = {
             "Modelo": "ARIMA (Optimizado ADF/AIC)",
-            "MAE": round(mae, 2),
-            "RMSE": round(rmse, 2),
-            "R2": round(r2, 4)
+            "MAE": mae,
+            "RMSE": rmse,
+            "R2": r2
         }
         
         print("Entrenamiento completado.")
