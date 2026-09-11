@@ -1,0 +1,84 @@
+{
+  "dataset_original": {
+    "registros_transaccionales": 44389,
+    "inicio": "2024-01-01 00:00:00",
+    "fin": "2026-07-30 22:20:28",
+    "sucursales": 19,
+    "productos": 14,
+    "combinaciones_potenciales": 266,
+    "combinaciones_observadas": 240,
+    "sha256_dataset": "d57f432caea468ab5599dc0a73b2bdf0a5ac63ece3d5051bbe8169431474324e"
+  },
+  "dataset_semanal": {
+    "observaciones_semanales": 21123,
+    "train_antes_lags": 16860,
+    "test_antes_lags": 4263,
+    "eliminadas_por_lags": 1881,
+    "eliminadas_train": 1690,
+    "eliminadas_test": 191,
+    "train_modelo": 15170,
+    "test_modelo": 4072,
+    "series_con_historia": 232,
+    "series_test": 158,
+    "porcentaje_ceros_global": 90.45590115040477,
+    "inicio_semanal": "2024-01-07 00:00:00",
+    "fin_semanal": "2026-08-02 00:00:00"
+  },
+  "fecha_corte": "2026-01-01",
+  "frecuencia": "W-SUN",
+  "protocolo_ml": "una semana secuencial; sin reentrenar durante test",
+  "folds": [
+    {
+      "fold": 1,
+      "filas_train": 2967,
+      "filas_validacion": 3732,
+      "train_inicio": "2024-03-03 00:00:00",
+      "train_fin": "2024-08-11 00:00:00",
+      "validacion_inicio": "2024-08-18 00:00:00",
+      "validacion_fin": "2025-01-26 00:00:00"
+    },
+    {
+      "fold": 2,
+      "filas_train": 6699,
+      "filas_validacion": 4357,
+      "train_inicio": "2024-03-03 00:00:00",
+      "train_fin": "2025-01-26 00:00:00",
+      "validacion_inicio": "2025-02-02 00:00:00",
+      "validacion_fin": "2025-07-13 00:00:00"
+    },
+    {
+      "fold": 3,
+      "filas_train": 11056,
+      "filas_validacion": 4114,
+      "train_inicio": "2024-03-03 00:00:00",
+      "train_fin": "2025-07-13 00:00:00",
+      "validacion_inicio": "2025-07-20 00:00:00",
+      "validacion_fin": "2025-12-28 00:00:00"
+    }
+  ],
+  "best_params": {
+    "Random Forest": {
+      "max_depth": 10,
+      "min_samples_leaf": 2,
+      "n_estimators": 200
+    },
+    "XGBoost": {
+      "learning_rate": 0.05,
+      "max_depth": 3,
+      "n_estimators": 100
+    }
+  },
+  "best_score_neg_mse": {
+    "Random Forest": -0.24748964825275496,
+    "XGBoost": -0.2327766347998478
+  },
+  "python": "3.11.9",
+  "versiones": {
+    "pandas": "3.0.5",
+    "numpy": "2.4.6",
+    "scikit-learn": "1.9.0",
+    "xgboost": "3.2.0",
+    "statsmodels": "0.14.6",
+    "joblib": "1.5.3"
+  }
+}
