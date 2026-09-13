@@ -1,0 +1,17 @@
+{
+  "version_target": "neto_erp_no_negativo_corte_estricto_v1",
+  "sha256_dataset": "d57f432caea468ab5599dc0a73b2bdf0a5ac63ece3d5051bbe8169431474324e",
+  "sha256_constructor": "6c7021ebe82fefe55c04edce1438ced1ac4429873335c1062996738afd40a8bf",
+  "protocolo": "multi-step desde origen fijo",
+  "frecuencia": "W-SUN",
+  "fecha_corte": "2026-01-01",
+  "observaciones_evaluadas": 3444,
+  "observaciones_excluidas_corte": 144,
+  "python": "3.11.9",
+  "versiones": {
+    "pandas": "3.0.5",
+    "numpy": "2.4.6",
+    "statsmodels": "0.14.6",
+    "scikit-learn": "1.9.0"
+  }
+}

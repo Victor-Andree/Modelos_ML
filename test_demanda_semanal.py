@@ -12,10 +12,10 @@ from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 from src.preprocessing.demanda_semanal import (
-    CLAVES, NUMERICAS, construir_semanal, agregar_features, particiones_por_semana)
+    CLAVES, NUMERICAS, construir_semanal, agregar_features, particiones_por_semana, excluir_semana_corte)
 
 
 class SemanalTests(unittest.TestCase):
@@ -29,7 +29,7 @@ class SemanalTests(unittest.TestCase):
         semanal = construir_semanal(original)
         self.assertEqual(semanal[semanal.sucursal.eq(1)].cantidad.tolist(), [2., 0., 7.])
         self.assertEqual(len(semanal[semanal.sucursal.eq(2)]), 1)
-        self.assertEqual(semanal.cantidad.sum(), original.cantidad.sum())
+        self.assertEqual(semanal.cantidad_neta_original.sum(), original.cantidad.sum())
         self.assertEqual(semanal.semana.dt.dayofweek.unique().tolist(), [6])
 
     def test_nan_no_es_cero(self):
@@ -83,6 +83,74 @@ class SemanalTests(unittest.TestCase):
         self.assertEqual(pipe.resultados[0]['MAE'], mean_absolute_error(yt, [0.1, 2.]))
         self.assertNotEqual(pipe.resultados[0]['MAE'], round(pipe.resultados[0]['MAE'], 2))
         pd.testing.assert_frame_equal(detalle[CLAVES+['semana']], claves)
+
+
+class TargetDefinitivoTests(unittest.TestCase):
+    def transacciones(self, valores, fechas=None):
+        if fechas is None: fechas = ['2025-12-01'] * len(valores)
+        return pd.DataFrame({'sucursal':1, 'producto':'A', 'fecdoc':fechas, 'cantidad':valores})
+
+    def test_venta_y_anulacion_neto_cero(self):
+        s = construir_semanal(self.transacciones([1,-1]))
+        self.assertEqual(s.cantidad_neta_original.tolist(), [0])
+        self.assertEqual(s.cantidad.tolist(), [0])
+
+    def test_saldo_menos_dos_truncado_despues_de_sumar(self):
+        s = construir_semanal(self.transacciones([1,-3]))
+        self.assertEqual(s.cantidad_neta_original.tolist(), [-2])
+        self.assertEqual(s.cantidad.tolist(), [0])
+
+    def test_saldo_positivo_no_se_modifica(self):
+        s = construir_semanal(self.transacciones([5,-2]))
+        self.assertEqual(s.cantidad_neta_original.tolist(), [3])
+        self.assertEqual(s.cantidad.tolist(), [3])
+
+    def test_corte_no_contiene_diciembre(self):
+        df = self.transacciones([10,20,30], ['2025-12-31','2026-01-01','2026-01-05'])
+        s = construir_semanal(df)
+        evaluable, fuera = excluir_semana_corte(s)
+        self.assertEqual(fuera.semana.tolist(), [pd.Timestamp('2026-01-04')])
+        self.assertEqual(fuera.cantidad.tolist(), [30])
+        self.assertEqual(evaluable.cantidad.tolist(), [30])
+        for semana in evaluable[evaluable.semana.ge('2026-01-01')].semana:
+            usadas = pd.to_datetime(df.fecdoc).between(semana-pd.Timedelta(days=6), semana+pd.Timedelta(days=1), inclusive='left')
+            self.assertTrue(pd.to_datetime(df.loc[usadas,'fecdoc']).ge('2026-01-01').all())
+
+    def test_lag_no_comprime_semana_excluida(self):
+        fechas = pd.date_range('2025-10-26', periods=14, freq='W-SUN')
+        s = construir_semanal(self.transacciones(list(range(14)), fechas))
+        f, _ = excluir_semana_corte(agregar_features(s))
+        valor = f.loc[f.semana.eq('2026-01-11'),'lag_1'].iloc[0]
+        self.assertEqual(valor, s.loc[s.semana.eq('2026-01-04'),'cantidad'].iloc[0])
+
+    def test_arima_y_ml_consumen_mismo_target(self):
+        from src.Modelos.ArimaPredictor import ArimaPredictor
+        df = self.transacciones([1,-3,4,-1], ['2025-12-01','2025-12-02','2025-12-10','2026-01-11'])
+        arima = ArimaPredictor(df)
+        pd.testing.assert_frame_equal(arima.preparar_semanal(), construir_semanal(df))
+        self.assertTrue(arima.semanal.cantidad.ge(0).all())
+        esperado, _ = excluir_semana_corte(construir_semanal(df))
+        pd.testing.assert_frame_equal(arima.semanal_evaluable, esperado)
+
+    def test_arima_respeta_horizonte_al_saltar_cruce(self):
+        from unittest.mock import patch
+        from src.Modelos.ArimaPredictor import ArimaPredictor
+        fechas = pd.date_range('2025-08-03', '2026-02-01', freq='W-SUN')
+        df = self.transacciones([1]*len(fechas), fechas)
+        class FakeARIMA:
+            def __init__(self, train, order):
+                assert train.index.max() == pd.Timestamp('2025-12-28')
+                assert train.min() >= 0
+            def fit(self): return self
+            def forecast(self, steps): return np.arange(1, steps+1, dtype=float)
+        modelo = ArimaPredictor(df)
+        with patch('src.Modelos.ArimaPredictor.ARIMA', FakeARIMA), \
+             patch.object(modelo, '_determinar_d', return_value=0), \
+             patch.object(modelo, '_optimizar_pq', return_value=(0,0,0)):
+            modelo.entrenar_y_evaluar()
+        self.assertEqual(modelo.predicciones.semana.iloc[0], pd.Timestamp('2026-01-11'))
+        self.assertEqual(modelo.predicciones.y_pred.iloc[0], 2)
+        self.assertEqual(modelo.predicciones.horizonte_semanas.iloc[0], 2)
 
 
 if __name__ == '__main__':

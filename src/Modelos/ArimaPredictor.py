@@ -5,6 +5,7 @@ from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.stattools import adfuller
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import itertools
+from src.preprocessing.demanda_semanal import construir_semanal, excluir_semana_corte
 
 warnings.filterwarnings("ignore")
 
@@ -17,6 +18,14 @@ class ArimaPredictor:
         self.y_real_totales = []
         self.predicciones_totales = []
         self.conteo_series = {}
+        self.predicciones = pd.DataFrame()
+
+    def preparar_semanal(self):
+        """Mismo neto/truncamiento semanal que ML, sin resample duplicado."""
+        datos = self.df.rename(columns={self.date_col: 'fecdoc', self.target_col: 'cantidad'})
+        self.semanal = construir_semanal(datos)
+        self.semanal_evaluable, self.semanas_excluidas = excluir_semana_corte(self.semanal)
+        return self.semanal
         
         
     def _determinar_d(self, serie):
@@ -67,8 +76,10 @@ class ArimaPredictor:
     def entrenar_y_evaluar(self):
         print("Iniciando entrenamiento ARIMA (Iteracion por Sucursal y Producto)...")
         
-        self.df[self.date_col] = pd.to_datetime(self.df[self.date_col])
-        grupos = self.df.groupby(['sucursal', 'producto'], observed=True)
+        self.preparar_semanal()
+        grupos = self.semanal.groupby(['sucursal', 'producto'], observed=True)
+        detalles = []
+        self.predicciones = pd.DataFrame()
         # Reiniciar acumuladores en cada ejecución; potenciales es el producto cartesiano observado.
         self.y_real_totales = []
         self.predicciones_totales = []
@@ -81,8 +92,8 @@ class ArimaPredictor:
         for nombre_grupo, df_grupo in grupos:
             sucursal, producto = nombre_grupo
             
-            # Resampleo semanal para estandarizar la serie temporal
-            df_serie = df_grupo.set_index(self.date_col).resample('W')[self.target_col].sum().fillna(0)
+            # Calendario completo compartido; conservar frecuencia y distancia al origen.
+            df_serie = df_grupo.set_index('semana')['cantidad'].asfreq('W-SUN')
             
             if len(df_serie) < 20:
                 self.conteo_series['descartadas'] += 1
@@ -90,8 +101,10 @@ class ArimaPredictor:
                 
             # Partición temporal estricta (Evita el Data Leakage)
             # Train: 2024-2025 | Test: 2026
+            elegible, _ = excluir_semana_corte(df_grupo)
+            serie_evaluable = elegible.set_index('semana')['cantidad']
             train = df_serie[df_serie.index < '2026-01-01']
-            test = df_serie[df_serie.index >= '2026-01-01']
+            test = serie_evaluable[serie_evaluable.index >= '2026-01-01']
             
             if len(train) < 10 or len(test) < 2:
                 self.conteo_series['descartadas'] += 1
@@ -109,7 +122,12 @@ class ArimaPredictor:
                 modelo_fit = modelo.fit()
                 
                 # 4. Proyectar sobre el periodo de prueba (2026)
-                predicciones = modelo_fit.forecast(steps=len(test))
+                # Pronosticar también la semana excluida y omitirla sólo del scoring.
+                # De otro modo el paso 1 (04-ene) se asignaría erróneamente al 11-ene.
+                fechas_futuras = pd.date_range(train.index.max() + pd.Timedelta(weeks=1),
+                                              test.index.max(), freq='W-SUN')
+                valores = modelo_fit.forecast(steps=len(fechas_futuras))
+                predicciones = pd.Series(np.asarray(valores, dtype=float), index=fechas_futuras).loc[test.index]
                 
                 if not np.isfinite(predicciones).all():
                     raise ValueError('Pronóstico ARIMA no finito')
@@ -118,11 +136,21 @@ class ArimaPredictor:
                 self.y_real_totales.extend(test.values)
                 self.predicciones_totales.extend(predicciones.values)
                 self.conteo_series['modeladas'] += 1
+                detalle = pd.DataFrame({'sucursal': sucursal, 'producto': producto,
+                                        'semana': test.index, 'y_real': test.to_numpy(),
+                                        'y_pred': predicciones.to_numpy(),
+                                        'origen': train.index.max(),
+                                        'horizonte_semanas': ((test.index - train.index.max()).days // 7)})
+                detalle['error'] = detalle.y_real - detalle.y_pred
+                detalle['error_absoluto'] = detalle.error.abs()
+                detalles.append(detalle)
                 
             except Exception:
                 self.conteo_series['fallidas'] += 1
                 continue
 
+        self.predicciones = pd.concat(detalles, ignore_index=True) if detalles else pd.DataFrame()
+        print(f'Semanas excluidas por cruce del corte: {len(self.semanas_excluidas)}')
         print(f'Resumen de series ARIMA: {self.conteo_series}')
         if not self.conteo_series['modeladas']:
             raise ValueError('No se modeló ninguna serie; revisar conteo_series.')

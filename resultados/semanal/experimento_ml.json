@@ -1,4 +1,6 @@
 {
+  "version_target": "neto_erp_no_negativo_corte_estricto_v1",
+  "sha256_constructor": "6c7021ebe82fefe55c04edce1438ced1ac4429873335c1062996738afd40a8bf",
   "dataset_original": {
     "registros_transaccionales": 44389,
     "inicio": "2024-01-01 00:00:00",
@@ -12,15 +14,19 @@
   "dataset_semanal": {
     "observaciones_semanales": 21123,
     "train_antes_lags": 16860,
-    "test_antes_lags": 4263,
-    "eliminadas_por_lags": 1881,
+    "test_antes_lags": 4119,
+    "eliminadas_por_lags_calendario_completo": 1881,
+    "eliminadas_por_lags": 1869,
+    "excluidas_corte": 144,
+    "observaciones_evaluables": 20979,
     "eliminadas_train": 1690,
-    "eliminadas_test": 191,
+    "eliminadas_test": 179,
     "train_modelo": 15170,
-    "test_modelo": 4072,
+    "test_modelo": 3940,
     "series_con_historia": 232,
-    "series_test": 158,
-    "porcentaje_ceros_global": 90.45590115040477,
+    "series_test": 156,
+    "porcentaje_ceros_completo": 90.4653695024381,
+    "porcentaje_ceros_evaluable": 90.44759044759044,
     "inicio_semanal": "2024-01-07 00:00:00",
     "fin_semanal": "2026-08-02 00:00:00"
   },
@@ -69,8 +75,8 @@
     }
   },
   "best_score_neg_mse": {
-    "Random Forest": -0.24748964825275496,
-    "XGBoost": -0.2327766347998478
+    "Random Forest": -0.23944511112367564,
+    "XGBoost": -0.22442686983335566
   },
   "python": "3.11.9",
   "versiones": {

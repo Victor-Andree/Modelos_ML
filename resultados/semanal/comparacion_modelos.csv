@@ -1,0 +1,5 @@
+Modelo,MAE,RMSE,R2,Granularidad,Observaciones_evaluadas,Protocolo
+Regresión Lineal,0.21262153005442033,0.5064960158764832,0.32647177215443346,Semanal W-SUN sucursal-producto,3940,"Secuencial semanal, parámetros fijos"
+XGBoost,0.20557451525296505,0.5140151778144718,0.3063256739900365,Semanal W-SUN sucursal-producto,3940,"Secuencial semanal, parámetros fijos"
+Random Forest,0.20719709307707393,0.5174821700338345,0.2969365577124059,Semanal W-SUN sucursal-producto,3940,"Secuencial semanal, parámetros fijos"
+ARIMA (Optimizado ADF/AIC),0.231150361159018,0.5727618919611277,0.2109713951839483,Semanal W-SUN sucursal-producto,3444,Multi-step desde origen fijo

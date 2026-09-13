@@ -1,0 +1,58 @@
+{
+  "modelo": "Regresión Lineal",
+  "criterio_seleccion": "Menor RMSE entre ML, respaldado por mayor R2; XGBoost tiene menor MAE en la ejecución verificada.",
+  "entrenado_solo_en_train": true,
+  "train_inicio": "2024-03-03 00:00:00",
+  "train_fin": "2025-12-28 00:00:00",
+  "fecha_corte": "2026-01-01",
+  "target": "Cantidad neta semanal ERP truncada a cero después de sumar; sin normalización",
+  "version_target": "neto_erp_no_negativo_corte_estricto_v1",
+  "frecuencia": "W-SUN",
+  "protocolo": "Secuencial de una semana; requiere ocho semanas previas observadas",
+  "columnas_entrada": [
+    "sucursal",
+    "producto",
+    "lag_1",
+    "lag_2",
+    "lag_4",
+    "lag_8",
+    "rolling_mean_4",
+    "rolling_mean_8",
+    "mes",
+    "semana_del_anio",
+    "trimestre"
+  ],
+  "tipos_entrada": {
+    "sucursal": "int64",
+    "producto": "str",
+    "lag_1": "float64",
+    "lag_2": "float64",
+    "lag_4": "float64",
+    "lag_8": "float64",
+    "rolling_mean_4": "float64",
+    "rolling_mean_8": "float64",
+    "mes": "int32",
+    "semana_del_anio": "int64",
+    "trimestre": "int32"
+  },
+  "metricas_holdout": {
+    "MAE": 0.21262153005442033,
+    "RMSE": 0.5064960158764832,
+    "R2": 0.32647177215443346
+  },
+  "observaciones_holdout": 3940,
+  "sha256_dataset": "d57f432caea468ab5599dc0a73b2bdf0a5ac63ece3d5051bbe8169431474324e",
+  "sha256_constructor": "6c7021ebe82fefe55c04edce1438ced1ac4429873335c1062996738afd40a8bf",
+  "sha256_modelo": "82893eecf78fd70f88f2d6d422907f2b783e69367ff26feb4189fbbaea082d58",
+  "python": "3.11.9",
+  "versiones": {
+    "pandas": "3.0.5",
+    "numpy": "2.4.6",
+    "scikit-learn": "1.9.0",
+    "xgboost": "3.2.0",
+    "statsmodels": "0.14.6",
+    "joblib": "1.5.3"
+  },
+  "predicciones_negativas": "Se conservan; no se aplica recorte posterior",
+  "integracion": "Crear features con demanda_semanal.py sobre historia semanal completa; pasar sucursal, producto y NUMERICAS. No pasar cantidad_neta_original, cantidad, total o unidades como predictores."
+}
