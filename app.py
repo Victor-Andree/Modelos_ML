@@ -1,116 +1,96 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
+from pathlib import Path
+import hashlib
+import json
 import joblib
+import pandas as pd
+import streamlit as st
+from src.preprocessing.demanda_semanal import construir_semanal
+from src.dashboard_semanal import entrada_pronostico
 
-# Configuración de la página
-st.set_page_config(page_title="DSS Logístico Farmacéutico", layout="wide")
+BASE = Path(__file__).resolve().parent
+st.set_page_config(page_title="Demanda farmacéutica semanal", layout="wide")
+st.title("Demanda farmacéutica semanal")
+st.caption("Regresión Lineal · sucursal-producto · semanas de lunes a domingo")
 
-st.title("Dashboard Predictivo de Demanda (DSS)")
-st.markdown("Sistema de Soporte a la Decisión basado en Machine Learning (XGBoost) para la optimización de inventarios logísticos.")
-
-# --- 1. CARGA DE DATOS Y MODELO ---
 @st.cache_resource
-def load_model():
-    # Carga del modelo predictivo optimizado (Asegúrate de que la ruta sea correcta)
-    return joblib.load("notebooks/modelo_xgb_optimo.pkl") 
+def cargar_modelo(ruta, modificacion):
+    return joblib.load(ruta)
 
 @st.cache_data
-def load_data():
-    # Ruta corregida según la estructura de carpetas en VS Code
-    df = pd.read_csv("datasets/dataset_maestro_dashboard.csv")
-    df['fecdoc'] = pd.to_datetime(df['fecdoc'])
-    return df
+def cargar_datos(ruta, modificacion):
+    datos = pd.read_csv(ruta)
+    datos['fecdoc'] = pd.to_datetime(datos['fecdoc'], errors='raise')
+    return datos, construir_semanal(datos)
 
 try:
-    modelo_ml = load_model()
-    df = load_data()
-    modelo_cargado = True
-except Exception as e:
-    st.error(f"Error en la inicialización del sistema. Verifique los directorios: {e}")
-    modelo_cargado = False
+    ruta = BASE / 'notebooks/modelo_regresion_lineal_semanal.pkl'
+    meta = json.loads(ruta.with_suffix('.json').read_text(encoding='utf-8'))
+    if hashlib.sha256(ruta.read_bytes()).hexdigest() != meta['sha256_modelo']:
+        raise ValueError('El modelo no corresponde a sus metadatos. Exporte ambos desde EDA 07.')
+    constructor = BASE / 'src/preprocessing/demanda_semanal.py'
+    if hashlib.sha256(constructor.read_bytes()).hexdigest() != meta['sha256_constructor']:
+        raise ValueError('El constructor semanal cambió desde la exportación. Verifique EDA 07.')
+    modelo = cargar_modelo(str(ruta), ruta.stat().st_mtime_ns)
+    ruta_datos = BASE / 'datasets/dataset_maestro_dashboard.csv'
+    df, semanal = cargar_datos(str(ruta_datos), ruta_datos.stat().st_mtime_ns)
+except Exception as exc:
+    st.error(f'No se pudo iniciar el dashboard: {exc}')
+    st.stop()
 
-if modelo_cargado:
-    # --- 2. PANEL DE CONTROL (LATERAL) ---
-    st.sidebar.header("Parámetros de Análisis")
-    st.sidebar.markdown("Seleccione las variables para procesar la consulta:")
-    
-    lista_sucursales = sorted(df['sucursal'].unique())
-    lista_productos = sorted(df['producto'].unique())
+sucursal = st.sidebar.selectbox('Sucursal', sorted(semanal.sucursal.unique()))
+productos = sorted(semanal.loc[semanal.sucursal.eq(sucursal), 'producto'].unique())
+producto = st.sidebar.selectbox('Producto', productos)
+serie = semanal.loc[semanal.sucursal.eq(sucursal) & semanal.producto.eq(producto)]
+st.info('Objetivo: cantidad neta semanal registrada en ERP, truncada a cero después de sumar. No incluye conversión entre cajas y unidades ni estima demanda perdida por falta de stock.')
+a, b, c = st.columns(3)
+a.metric('Cantidad semanal acumulada', f"{serie.cantidad.sum():,.2f}")
+b.metric('Promedio por semana registrada', f"{serie.cantidad.mean():.3f}")
+c.metric('Semanas con cantidad cero', f"{serie.cantidad.eq(0).mean():.1%}")
+st.caption('Indicadores del calendario observado; los extremos pueden contener semanas parciales.')
+st.line_chart(serie.set_index('semana')[['cantidad']], x_label='Semana (domingo)', y_label='Cantidad ERP')
+st.subheader('Cantidad acumulada por sucursal para este producto')
+st.bar_chart(semanal.loc[semanal.producto.eq(producto)].groupby('sucursal').cantidad.sum())
 
-    sucursal_sel = st.sidebar.selectbox("Identificador de Sucursal", options=lista_sucursales)
-    producto_sel = st.sidebar.selectbox("Línea de Medicamento", options=lista_productos)
-    
-    st.sidebar.divider()
-    st.sidebar.info("El sistema procesa la información basándose en el historial transaccional validado.")
-
-    df_filtered = df[(df['sucursal'] == sucursal_sel) & (df['producto'] == producto_sel)].copy()
-
-    # --- 3. INDICADORES DE GESTIÓN (KPIs) ---
-    st.markdown("---")
-    kpi1, kpi2, kpi3 = st.columns(3)
-    kpi1.metric("Volumen Histórico Total", f"{int(df_filtered['cantidad'].sum())} Cajas")
-    kpi2.metric("Promedio de Salida Semanal", f"{round(df_filtered['cantidad'].mean(), 1)} Cajas")
-    kpi3.metric("Motor Predictivo Activo", "XGBoost Regressor")
-    st.markdown("---")
-
-    # --- 4. VISUALIZACIÓN ANALÍTICA ---
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.subheader(f"Serie Temporal: Sucursal {sucursal_sel}")
-        fig1, ax1 = plt.subplots(figsize=(8, 4))
-        sns.lineplot(data=df_filtered, x='fecdoc', y='cantidad', ax=ax1, color='#2c3e50', linewidth=1.5)
-        ax1.set_xlabel('Periodo Transaccional')
-        ax1.set_ylabel('Unidades Físicas (Cajas)')
-        ax1.grid(True, linestyle='--', alpha=0.5)
-        plt.xticks(rotation=45)
-        fig1.tight_layout()
-        st.pyplot(fig1)
-
-    with col2:
-        st.subheader("Análisis de Concentración Espacial")
-        if df_filtered.empty:
-            st.warning("Información histórica insuficiente para el cruce seleccionado.")
-        else:
-            fig2, ax2 = plt.subplots(figsize=(8, 4))
-            df_total_sucursal = df[df['producto'] == producto_sel].groupby('sucursal')['cantidad'].sum().reset_index()
-            sns.barplot(data=df_total_sucursal, x='sucursal', y='cantidad', ax=ax2, palette='mako')
-            ax2.set_xlabel('Red de Sucursales')
-            ax2.set_ylabel('Volumen Acumulado (Cajas)')
-            fig2.tight_layout()
-            st.pyplot(fig2)
-
-    # --- 5. MOTOR DE RECOMENDACIÓN (FÓRMULA DE ABASTECIMIENTO) ---
-    st.markdown("---")
-    st.subheader("Motor de Recomendación Logística (Reabastecimiento)")
-    
-    if not df_filtered.empty:
-        # 1. Obtenemos el último registro para usarlo como base de predicción (Lag/Rolling)
-        ultimo_registro = df_filtered.iloc[-1:]
-        
-        # 2. Extraemos el valor proyectado (En un entorno real, aquí se inyectaría la fila en modelo_ml.predict())
-        # Para mantener el dashboard fluido sin recalcular toda la matriz OHE, usamos una heurística predictiva
-        # combinando el promedio reciente y la estacionalidad matemática.
-        tendencia_reciente = df_filtered['cantidad'].tail(4).mean()
-        
-        # 3. Margen de Seguridad (Basado en tu RMSE documentado para XGBoost ~ 0.08, ajustado a unidades físicas logísticas)
-        # Se establece un margen mínimo de 1 caja para sucursales intermitentes y mayor para sucursales de alta demanda
-        margen_seguridad = np.ceil(tendencia_reciente * 0.15) if tendencia_reciente > 2 else 1
-        
-        # 4. Cálculo Final
-        prediccion_base = np.ceil(tendencia_reciente)
-        envio_recomendado = int(prediccion_base + margen_seguridad)
-
-        st.info("Estado: Motor de Machine Learning enlazado y operativo.")
-        
-        col_rec1, col_rec2, col_rec3 = st.columns(3)
-        col_rec1.metric("Proyección Base (XGBoost)", f"{int(prediccion_base)} Cajas", delta="Demanda Pura", delta_color="off")
-        col_rec2.metric("Margen de Seguridad (RMSE)", f"+{int(margen_seguridad)} Cajas", delta="Protección Stock-out", delta_color="normal")
-        col_rec3.metric("Reabastecimiento Sugerido", f"{envio_recomendado} Cajas", delta="Envío Óptimo", delta_color="inverse")
-        
-        st.write(f"**Justificación:** El sistema recomienda enviar **{envio_recomendado} cajas** a la **Sucursal {sucursal_sel}**. Este cálculo mitiga el riesgo de inmovilización de capital y protege contra quiebres de inventario asumiendo las desviaciones históricas del fármaco.")
+st.subheader('Pronóstico de una semana')
+st.write('Indique hasta qué día está completa la carga del ERP. Se usan únicamente semanas cerradas; la última transacción por sí sola no demuestra que la carga esté completa.')
+fecha = st.date_input('Datos completos hasta (inclusive)', value=df.fecdoc.max().date(),
+                     min_value=df.fecdoc.min().date(), max_value=df.fecdoc.max().date())
+confirmado = st.checkbox('Confirmo que la carga está completa hasta esa fecha')
+st.caption(f"Modelo ajustado con TRAIN hasta {meta['train_fin'][:10]}. No se reentrena desde el dashboard.")
+if confirmado:
+    if pd.Timestamp(fecha) < pd.Timestamp(meta['train_fin']).normalize():
+        st.warning('El origen debe ser posterior o igual al fin de TRAIN para evitar usar un modelo entrenado con datos futuros respecto a la consulta.')
     else:
-        st.warning("Seleccione una combinación válida para activar el motor de recomendación.")
+        try:
+            semana, entrada = entrada_pronostico(semanal, sucursal, producto, fecha)
+            pred = float(modelo.predict(entrada[meta['columnas_entrada']])[0])
+            st.metric('Predicción del modelo (cantidad ERP)', f'{pred:.4f}')
+            st.write(f"Semana objetivo: {(semana - pd.Timedelta(days=6)):%d/%m/%Y} a {semana:%d/%m/%Y}.")
+            if semana - pd.Timedelta(days=6) <= df.fecdoc.max().normalize():
+                st.caption('La semana objetivo ya tiene fechas cubiertas por el archivo: esta consulta simula un origen histórico, no un pronóstico posterior a todo el dataset.')
+            if pred < 0:
+                st.warning('La regresión produjo un valor negativo. Se conserva para mantener el comportamiento evaluado; no constituye una cantidad a despachar.')
+            st.caption('Estimación de demanda registrada. Para calcular pedidos se necesitan stock disponible, pedidos en tránsito, plazo de entrega y una política de servicio validada.')
+            st.download_button('Descargar pronóstico', pd.DataFrame([{'sucursal': sucursal, 'producto': producto,
+                'semana': semana, 'y_pred': pred, 'modelo': meta['modelo']}]).to_csv(index=False),
+                file_name='pronostico_semanal.csv', mime='text/csv')
+        except ValueError as exc:
+            st.warning(str(exc))
+
+st.subheader('Resultados del experimento temporal')
+st.caption('Holdout desde 2026-01-01. Regresión Lineal: menor RMSE y mayor R² entre ML; XGBoost: menor MAE en el experimento exportado. La selección se hizo tras observar este holdout y requiere validación futura independiente.')
+st.dataframe(pd.DataFrame([{'Modelo': meta['modelo'], **meta['metricas_holdout'],
+    'Observaciones': meta['observaciones_holdout']}]), hide_index=True)
+resultados = BASE / 'resultados/semanal'
+try:
+    ml = json.loads((resultados / 'experimento_ml.json').read_text(encoding='utf-8'))
+    arima = json.loads((resultados / 'experimento_arima.json').read_text(encoding='utf-8'))
+    for clave in ['sha256_dataset', 'sha256_constructor', 'version_target']:
+        if not (ml[clave] == arima[clave] == meta[clave]):
+            raise ValueError('Los resultados pertenecen a versiones distintas del experimento.')
+    st.dataframe(pd.read_csv(resultados / 'comparacion_modelos.csv'), hide_index=True)
+    st.caption('Comparación descriptiva: ARIMA usa origen fijo y distinta cobertura; ML usa historia observada semana a semana. No se declara un ganador general entre los cuatro modelos.')
+except (OSError, ValueError, KeyError) as exc:
+    st.info(f'Comparación de cuatro modelos no disponible: {exc}')
+if hashlib.sha256(ruta_datos.read_bytes()).hexdigest() != meta['sha256_dataset']:
+    st.caption('El archivo actual cambió respecto al entrenamiento. Las métricas mostradas corresponden al experimento original, no a una reevaluación de estos datos.')
