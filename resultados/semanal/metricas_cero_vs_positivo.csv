@@ -1,0 +1,9 @@
+Modelo,Tipo_demanda,MAE,RMSE,R2,Observaciones,Series,Varianza_y_real,SST,Porcentaje_ceros_test,R2_estado,Advertencias
+Regresión Lineal,cero,0.12528147778620907,0.26529822863131863,,3019,129,0.0,0.0,100.0,no_definido_target_constante,porcentaje_ceros_mayor_que_global
+Random Forest,cero,0.12111845175533961,0.2961319668246474,,3019,129,0.0,0.0,100.0,no_definido_target_constante,porcentaje_ceros_mayor_que_global
+XGBoost,cero,0.1160184654569776,0.28244962284106145,,3019,129,0.0,0.0,100.0,no_definido_target_constante,porcentaje_ceros_mayor_que_global
+ARIMA (Optimizado ADF/AIC),cero,0.12452072152958125,0.33183675217934283,,3019,129,0.0,0.0,100.0,no_definido_target_constante,porcentaje_ceros_mayor_que_global
+Regresión Lineal,positiva,0.9786595263818504,1.3637863760256992,-0.6090486723134769,425,66,1.1559086505190312,491.2611764705883,0.0,definido,
+Random Forest,positiva,0.9793762551374675,1.3478838168095357,-0.571742527232804,425,66,1.1559086505190312,491.2611764705883,0.0,definido,
+XGBoost,positiva,1.0006496992400464,1.369231631788796,-0.621923376600028,425,66,1.1559086505190312,491.2611764705883,0.0,definido,
+ARIMA (Optimizado ADF/AIC),positiva,1.0305950374826207,1.3931419887783683,-0.6790639987215776,425,66,1.1559086505190312,491.2611764705883,0.0,definido,

@@ -1,0 +1,7 @@
+Modelo,Metrica,Series_minimo_exclusivo,Series_minimo_compartido,Series_minimo_incluyendo_empates,Series_totales
+Regresión Lineal,MAE,22,0,22,129
+Random Forest,MAE,79,0,79,129
+XGBoost,MAE,28,0,28,129
+Regresión Lineal,RMSE,21,0,21,129
+Random Forest,RMSE,75,0,75,129
+XGBoost,RMSE,33,0,33,129

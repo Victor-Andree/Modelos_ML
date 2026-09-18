@@ -1,0 +1,9 @@
+Modelo,Metrica,Series_minimo_exclusivo,Series_minimo_compartido,Series_minimo_incluyendo_empates,Series_totales
+Regresión Lineal,MAE,8,0,8,129
+Random Forest,MAE,34,0,34,129
+XGBoost,MAE,14,0,14,129
+ARIMA (Optimizado ADF/AIC),MAE,73,0,73,129
+Regresión Lineal,RMSE,10,0,10,129
+Random Forest,RMSE,36,0,36,129
+XGBoost,RMSE,16,0,16,129
+ARIMA (Optimizado ADF/AIC),RMSE,67,0,67,129

@@ -1,0 +1,9 @@
+Modelo,Metrica,Spearman_por_serie,Series,Interpretacion
+Regresión Lineal,MAE,-0.8319170389257599,129,Asociación descriptiva; sin inferencia causal ni p-valor
+Regresión Lineal,RMSE,-0.7758823927693139,129,Asociación descriptiva; sin inferencia causal ni p-valor
+Random Forest,MAE,-0.8181874133458827,129,Asociación descriptiva; sin inferencia causal ni p-valor
+Random Forest,RMSE,-0.7998163728916012,129,Asociación descriptiva; sin inferencia causal ni p-valor
+XGBoost,MAE,-0.8099403690050825,129,Asociación descriptiva; sin inferencia causal ni p-valor
+XGBoost,RMSE,-0.7777720112374694,129,Asociación descriptiva; sin inferencia causal ni p-valor
+ARIMA (Optimizado ADF/AIC),MAE,-0.9089123255861614,129,Asociación descriptiva; sin inferencia causal ni p-valor
+ARIMA (Optimizado ADF/AIC),RMSE,-0.8498606561499441,129,Asociación descriptiva; sin inferencia causal ni p-valor
