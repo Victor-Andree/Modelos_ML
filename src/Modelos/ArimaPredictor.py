@@ -6,6 +6,7 @@ from statsmodels.tsa.stattools import adfuller
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import itertools
 from src.preprocessing.demanda_semanal import construir_semanal, excluir_semana_corte
+from src.evaluacion_semanal import metricas_predicciones
 
 warnings.filterwarnings("ignore")
 
@@ -21,7 +22,7 @@ class ArimaPredictor:
         self.predicciones = pd.DataFrame()
 
     def preparar_semanal(self):
-        """Mismo neto/truncamiento semanal que ML, sin resample duplicado."""
+        """Misma depuración transaccional y demanda semanal que ML."""
         datos = self.df.rename(columns={self.date_col: 'fecdoc', self.target_col: 'cantidad'})
         self.semanal = construir_semanal(datos)
         self.semanal_evaluable, self.semanas_excluidas = excluir_semana_corte(self.semanal)
@@ -79,6 +80,7 @@ class ArimaPredictor:
         self.preparar_semanal()
         grupos = self.semanal.groupby(['sucursal', 'producto'], observed=True)
         detalles = []
+        registro = []
         self.predicciones = pd.DataFrame()
         # Reiniciar acumuladores en cada ejecución; potenciales es el producto cartesiano observado.
         self.y_real_totales = []
@@ -91,11 +93,14 @@ class ArimaPredictor:
         
         for nombre_grupo, df_grupo in grupos:
             sucursal, producto = nombre_grupo
+            estado = {'sucursal': sucursal, 'producto': producto, 'semanas': len(df_grupo)}
+            registro.append(estado)
             
             # Calendario completo compartido; conservar frecuencia y distancia al origen.
             df_serie = df_grupo.set_index('semana')['cantidad'].asfreq('W-SUN')
             
             if len(df_serie) < 20:
+                estado.update(estado='descartada', motivo='menos_de_20_semanas')
                 self.conteo_series['descartadas'] += 1
                 continue
                 
@@ -106,7 +111,12 @@ class ArimaPredictor:
             train = df_serie[df_serie.index < '2026-01-01']
             test = serie_evaluable[serie_evaluable.index >= '2026-01-01']
             
+            estado.update(semanas_train=len(train), semanas_test=len(test))
             if len(train) < 10 or len(test) < 2:
+                razones = []
+                if len(train) < 10: razones.append('menos_de_10_semanas_train')
+                if len(test) < 2: razones.append('menos_de_2_semanas_test')
+                estado.update(estado='descartada', motivo=';'.join(razones))
                 self.conteo_series['descartadas'] += 1
                 continue
                 
@@ -144,28 +154,24 @@ class ArimaPredictor:
                 detalle['error'] = detalle.y_real - detalle.y_pred
                 detalle['error_absoluto'] = detalle.error.abs()
                 detalles.append(detalle)
+                estado.update(estado='modelada', motivo='', orden=str(mejor_orden), aic=float(modelo_fit.aic))
                 
-            except Exception:
+            except Exception as exc:
+                estado.update(estado='fallida', motivo=f'{type(exc).__name__}: {exc}')
                 self.conteo_series['fallidas'] += 1
                 continue
 
+        self.registro_series = pd.DataFrame(registro)
         self.predicciones = pd.concat(detalles, ignore_index=True) if detalles else pd.DataFrame()
         print(f'Semanas excluidas por cruce del corte: {len(self.semanas_excluidas)}')
         print(f'Resumen de series ARIMA: {self.conteo_series}')
         if not self.conteo_series['modeladas']:
             raise ValueError('No se modeló ninguna serie; revisar conteo_series.')
 
-        # 5. Calcular métricas globales consolidadadas (R2, MAE, RMSE)
-        mae = mean_absolute_error(self.y_real_totales, self.predicciones_totales)
-        rmse = np.sqrt(mean_squared_error(self.y_real_totales, self.predicciones_totales))
-        r2 = r2_score(self.y_real_totales, self.predicciones_totales)
-        
-        metricas = {
-            "Modelo": "ARIMA (Optimizado ADF/AIC)",
-            "MAE": mae,
-            "RMSE": rmse,
-            "R2": r2
-        }
-        
+        metricas = {'Modelo': 'ARIMA (Optimizado ADF/AIC)',
+                    **metricas_predicciones(self.predicciones),
+                    'Observaciones_evaluadas': len(self.predicciones),
+                    'Series_evaluadas': self.conteo_series['modeladas']}
+
         print("Entrenamiento completado.")
         return metricas

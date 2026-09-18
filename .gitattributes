@@ -1,0 +1,24 @@
+# Preserve bytes hashed by experiment manifests.
+resultados/** -text
+*.pkl binary
+# Original CSV checkout bytes were CRLF; keep original Git blobs unchanged.
+datasets/**/*.csv text eol=crlf
+app.py -text
+notebooks/06_Entrenamiento_ARIMA.ipynb -text
+notebooks/07_Entrenamiento_MachineLearning.ipynb -text
+notebooks/08_EDA_Intermitencia_Series.ipynb -text
+notebooks/modelo_random_forest_semanal.json -text
+notebooks/modelo_regresion_lineal_semanal.json -text
+notebooks/modelo_xgboost_semanal.json -text
+scripts/ejecutar_experimento_semanal.py -text
+scripts/validar_evidencia_semanal.py -text
+src/Modelos/ArimaPredictor.py -text
+src/Modelos/MachineLearningPipeline.py -text
+src/dashboard_semanal.py -text
+src/evaluacion_semanal.py -text
+src/experimento_semanal.py -text
+src/preprocessing/clean_data.py -text
+src/preprocessing/demanda_semanal.py -text
+src/preprocessing/prediccion_dashboard.py -text
+test_comparacion_comun.py -text
+test_demanda_semanal.py -text

@@ -1,0 +1,43 @@
+{
+  "version_target": "demanda_observada_sin_negativos_corte_estricto_v2",
+  "fecha_corte": "2026-01-01",
+  "frecuencia": "W-SUN",
+  "target": "Suma semanal de cantidad ERP tras excluir transacciones NaN y negativas; ceros conservados",
+  "sha256_dataset": "d57f432caea468ab5599dc0a73b2bdf0a5ac63ece3d5051bbe8169431474324e",
+  "sha256_analitico": "506b96f9eb5cbd0f30a7058976973595348b19b881a8a54a53e206a400af2325",
+  "sha256_constructor": "26a73c010b775cf1f269498844fa5e1a63a756439894acabbc8ef2c8e4234870",
+  "sha256_limpieza": "1281c960132bad3e816cec965ed3d09dafebf8f02a2c81e267b07e2425b8d885",
+  "codigo_sha256": {
+    "src/evaluacion_semanal.py": "0c882967fd895205ce6e4d92cc1c29840aaaca9e91e04d55fec70cf640694fd9",
+    "src/experimento_semanal.py": "2e13a1b57477bc860a38037e2fd607c8d64a072d5e5d09ba2356adb28a856bec",
+    "src/Modelos/ArimaPredictor.py": "384794df1fd17e76cba56bb6f140a906e4bf5d9235a5a31282a8ff314b83420d",
+    "src/Modelos/MachineLearningPipeline.py": "6ff8d2b1edf3ea0437d9310c9bfe4b73b40b4ea5f8bad50ab3776758998243cb"
+  },
+  "python": "3.12.14",
+  "versiones": {
+    "pandas": "3.0.5",
+    "numpy": "2.5.3",
+    "statsmodels": "0.15.0",
+    "scikit-learn": "1.9.0",
+    "xgboost": "3.4.1",
+    "joblib": "1.6.0"
+  },
+  "generado_utc": "2026-09-18T03:46:44.400285+00:00",
+  "poblacion": "Intersección exacta de predicciones válidas en sucursal, producto, semana",
+  "formato_predicciones_comunes": "largo: una fila por clave y modelo",
+  "observaciones_comunes": 3444,
+  "series_comunes": 129,
+  "limite": "Misma población; protocolos de información distintos: ARIMA fijo multi-step, ML secuencial semanal",
+  "fuentes_sha256": {
+    "predicciones_Regresión_Lineal_semanal.csv": "964e5c95c6a027e1a7c93d52af41bbc64687955f1cbc96c9a6aad3e8d2dc1475",
+    "predicciones_Random_Forest_semanal.csv": "2d0df12ded756185d503248267b9c12c30ef67297d3d91e11ddbc42f580e791c",
+    "predicciones_XGBoost_semanal.csv": "9a9aa3efcc814c80b61d3634d39240387e3d62ac93078cb1a258d73637beea64",
+    "predicciones_arima_concatenadas.csv": "fd1bed46eef2e874852ef544f761693ff8a2028d986b569b7ffc80d5c9be28ee"
+  },
+  "resultados_sha256": {
+    "predicciones_comunes.csv": "33e68d6669a8f8a9abaea166a4236b524032872a6a106529beebec3ba162afdc",
+    "comparacion_modelos_comun.csv": "8628fc19aaf1ac55e78013e245085900648faac555fc40e9d88877adb0e31bdb",
+    "metricas_cobertura_propia.csv": "e9e59aab8169971e5a909d12733ecc648cbc01e8555bb9e83f1b9d3db5014e38",
+    "resumen_cobertura.csv": "0b67f399688d97297220d98d1ee76717ca6cec5e0efe8c5cddf9c28bafbe32e2"
+  }
+}
