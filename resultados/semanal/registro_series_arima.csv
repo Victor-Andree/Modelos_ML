@@ -1,0 +1,241 @@
+sucursal,producto,semanas,semanas_train,semanas_test,estado,motivo,orden,aic
+1,AMOXICILINA 500MG,103,82.0,20.0,modelada,,"(0, 0, 0)",-125.65120591326075
+1,AZITROMICINA 500MG,121,104.0,16.0,modelada,,"(0, 0, 0)",229.76617844597843
+1,CETIRIZINA 10MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+1,DIMENHIDRINATO 50MG,134,104.0,29.0,modelada,,"(0, 0, 0)",-18.31165456407735
+1,ENALAPRIL 10MG,134,104.0,29.0,modelada,,"(1, 0, 1)",216.7479101288314
+1,IBUPROFENO TABX800,133,104.0,28.0,modelada,,"(0, 0, 0)",-2208.6955095894496
+1,LOPERAMIDA 2MG,130,101.0,28.0,modelada,,"(0, 0, 0)",-176.50657161772608
+1,LORATADINA 10MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+1,LOSARTAN 50MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+1,METFORMINA 850MG,125,101.0,23.0,modelada,,"(2, 0, 3)",193.3333257742097
+1,NAPROXENO TABX550MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+1,OMEPRAZOL 20MG,15,,,descartada,menos_de_20_semanas,,
+1,PARACETAMOL 500MG,135,104.0,30.0,modelada,,"(2, 1, 2)",114.81229868799988
+1,VITAMINA C+ZINC+D3,135,104.0,30.0,modelada,,"(0, 0, 0)",341.4549176454831
+2,AMOXICILINA 500MG,37,18.0,18.0,modelada,,"(0, 0, 0)",55.08178719861492
+2,AZITROMICINA 500MG,135,104.0,30.0,modelada,,"(0, 0, 0)",-184.88227696194693
+2,CETIRIZINA 10MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+2,DIMENHIDRINATO 50MG,131,100.0,30.0,modelada,,"(0, 0, 0)",-2123.5918361436934
+2,ENALAPRIL 10MG,134,104.0,29.0,modelada,,"(3, 1, 2)",171.3181086980777
+2,IBUPROFENO TABX800,135,104.0,30.0,modelada,,"(0, 0, 0)",-184.88227696194696
+2,LOPERAMIDA 2MG,27,0.0,27.0,descartada,menos_de_10_semanas_train,,
+2,LORATADINA 10MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+2,LOSARTAN 50MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+2,METFORMINA 850MG,130,104.0,25.0,modelada,,"(0, 0, 1)",172.59634592988797
+2,NAPROXENO TABX550MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+2,OMEPRAZOL 20MG,17,,,descartada,menos_de_20_semanas,,
+2,PARACETAMOL 500MG,132,104.0,27.0,modelada,,"(3, 1, 3)",62.810953007545926
+2,VITAMINA C+ZINC+D3,133,104.0,28.0,modelada,,"(3, 0, 2)",378.4518617040145
+3,AMOXICILINA 500MG,76,69.0,6.0,modelada,,"(0, 2, 2)",236.53554792382067
+3,AZITROMICINA 500MG,127,104.0,22.0,modelada,,"(0, 0, 0)",-2208.6955095894496
+3,CETIRIZINA 10MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+3,DIMENHIDRINATO 50MG,134,104.0,29.0,modelada,,"(0, 0, 2)",-175.37069640627632
+3,ENALAPRIL 10MG,133,102.0,30.0,modelada,,"(0, 0, 0)",46.05512128899504
+3,IBUPROFENO TABX800,135,104.0,30.0,modelada,,"(0, 0, 0)",-2208.6955095894496
+3,LOPERAMIDA 2MG,131,102.0,28.0,modelada,,"(0, 0, 0)",-2166.1436728665767
+3,LORATADINA 10MG,107,104.0,2.0,modelada,,"(0, 0, 0)",-2208.6955095894496
+3,LOSARTAN 50MG,108,104.0,3.0,modelada,,"(3, 0, 2)",156.8949623197035
+3,METFORMINA 850MG,128,103.0,24.0,modelada,,"(1, 0, 1)",267.61370591314426
+3,NAPROXENO TABX550MG,104,104.0,0.0,descartada,menos_de_2_semanas_test,,
+3,OMEPRAZOL 20MG,27,27.0,0.0,descartada,menos_de_2_semanas_test,,
+3,PARACETAMOL 500MG,127,104.0,22.0,modelada,,"(3, 1, 3)",-22.079741455930943
+3,VITAMINA C+ZINC+D3,134,104.0,29.0,modelada,,"(0, 0, 0)",315.44524867200863
+4,AMOXICILINA 500MG,98,79.0,18.0,modelada,,"(0, 0, 0)",-118.00047483173513
+4,AZITROMICINA 500MG,135,104.0,30.0,modelada,,"(0, 0, 0)",-2208.6955095894496
+4,CETIRIZINA 10MG,98,98.0,0.0,descartada,menos_de_2_semanas_test,,
+4,DIMENHIDRINATO 50MG,133,102.0,30.0,modelada,,"(0, 0, 0)",-179.28869963127778
+4,ENALAPRIL 10MG,133,103.0,29.0,modelada,,"(0, 0, 0)",113.81662147443683
+4,IBUPROFENO TABX800,133,104.0,28.0,modelada,,"(0, 0, 0)",-2208.6955095894496
+4,LOPERAMIDA 2MG,132,101.0,30.0,modelada,,"(0, 0, 0)",-2144.867754505131
+4,LORATADINA 10MG,96,96.0,0.0,descartada,menos_de_2_semanas_test,,
+4,LOSARTAN 50MG,96,96.0,0.0,descartada,menos_de_2_semanas_test,,
+4,METFORMINA 850MG,125,94.0,30.0,modelada,,"(0, 0, 0)",111.1238440232527
+4,NAPROXENO TABX550MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+4,PARACETAMOL 500MG,105,104.0,0.0,descartada,menos_de_2_semanas_test,,
+4,VITAMINA C+ZINC+D3,134,104.0,29.0,modelada,,"(1, 0, 1)",413.55579097646273
+5,AMOXICILINA 500MG,99,86.0,12.0,modelada,,"(0, 0, 2)",-20.339209048100127
+5,AZITROMICINA 500MG,116,104.0,11.0,modelada,,"(0, 0, 0)",-18.31165456407677
+5,CETIRIZINA 10MG,99,99.0,0.0,descartada,menos_de_2_semanas_test,,
+5,DIMENHIDRINATO 50MG,135,104.0,30.0,modelada,,"(0, 0, 0)",-0.2359042608177866
+5,ENALAPRIL 10MG,131,101.0,29.0,modelada,,"(0, 0, 0)",113.1512172405817
+5,IBUPROFENO TABX800,134,104.0,29.0,modelada,,"(0, 0, 0)",-2208.6955095894496
+5,LOPERAMIDA 2MG,28,0.0,28.0,descartada,menos_de_10_semanas_train,,
+5,LORATADINA 10MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+5,LOSARTAN 50MG,95,95.0,0.0,descartada,menos_de_2_semanas_test,,
+5,METFORMINA 850MG,130,102.0,27.0,modelada,,"(2, 0, 3)",191.49954482546272
+5,NAPROXENO TABX550MG,98,98.0,0.0,descartada,menos_de_2_semanas_test,,
+5,OMEPRAZOL 20MG,39,39.0,0.0,descartada,menos_de_2_semanas_test,,
+5,PARACETAMOL 500MG,128,104.0,23.0,modelada,,"(0, 0, 0)",367.84522226932154
+5,VITAMINA C+ZINC+D3,134,104.0,29.0,modelada,,"(0, 0, 0)",402.42244096182515
+6,AMOXICILINA 500MG,95,73.0,21.0,modelada,,"(0, 0, 0)",-103.0454254707462
+6,AZITROMICINA 500MG,135,104.0,30.0,modelada,,"(0, 0, 0)",-184.882276961947
+6,CETIRIZINA 10MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+6,DIMENHIDRINATO 50MG,129,104.0,24.0,modelada,,"(0, 0, 0)",-2208.6955095894496
+6,ENALAPRIL 10MG,135,104.0,30.0,modelada,,"(3, 0, 2)",363.2856157092372
+6,IBUPROFENO TABX800,134,104.0,29.0,modelada,,"(0, 0, 0)",-2208.6955095894496
+6,LOPERAMIDA 2MG,133,102.0,30.0,modelada,,"(0, 0, 0)",-2166.1436728665767
+6,LORATADINA 10MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+6,LOSARTAN 50MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+6,METFORMINA 850MG,134,104.0,29.0,modelada,,"(0, 0, 0)",176.52784061570225
+6,NAPROXENO TABX550MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+6,OMEPRAZOL 20MG,26,26.0,0.0,descartada,menos_de_2_semanas_test,,
+6,PARACETAMOL 500MG,105,104.0,0.0,descartada,menos_de_2_semanas_test,,
+6,VITAMINA C+ZINC+D3,131,104.0,26.0,modelada,,"(0, 0, 0)",350.84972316009834
+7,AMOXICILINA 500MG,100,76.0,23.0,modelada,,"(0, 0, 0)",-110.46371362239708
+7,AZITROMICINA 500MG,135,104.0,30.0,modelada,,"(0, 0, 0)",-184.8822769619469
+7,CETIRIZINA 10MG,98,98.0,0.0,descartada,menos_de_2_semanas_test,,
+7,DIMENHIDRINATO 50MG,132,101.0,30.0,modelada,,"(0, 0, 0)",-2144.867754505131
+7,ENALAPRIL 10MG,134,104.0,29.0,modelada,,"(0, 0, 0)",68.9900298068993
+7,IBUPROFENO TABX800,135,104.0,30.0,modelada,,"(0, 0, 0)",-2208.6955095894496
+7,LOPERAMIDA 2MG,3,,,descartada,menos_de_20_semanas,,
+7,LORATADINA 10MG,96,96.0,0.0,descartada,menos_de_2_semanas_test,,
+7,LOSARTAN 50MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+7,METFORMINA 850MG,135,104.0,30.0,modelada,,"(0, 0, 0)",-3.7144894880246557
+7,NAPROXENO TABX550MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+7,PARACETAMOL 500MG,135,104.0,30.0,modelada,,"(0, 0, 2)",-174.9910542941672
+7,VITAMINA C+ZINC+D3,134,104.0,29.0,modelada,,"(1, 0, 0)",288.1666214452379
+8,AMOXICILINA 500MG,102,71.0,30.0,modelada,,"(0, 0, 0)",-1506.5902036620212
+8,AZITROMICINA 500MG,135,104.0,30.0,modelada,,"(0, 0, 0)",-2208.6955095894496
+8,CETIRIZINA 10MG,94,94.0,0.0,descartada,menos_de_2_semanas_test,,
+8,DIMENHIDRINATO 50MG,132,101.0,30.0,modelada,,"(0, 0, 0)",-2144.867754505131
+8,ENALAPRIL 10MG,133,104.0,28.0,modelada,,"(0, 0, 2)",-45.55855648854794
+8,IBUPROFENO TABX800,131,103.0,27.0,modelada,,"(0, 0, 0)",-2187.419591228014
+8,LOPERAMIDA 2MG,134,104.0,29.0,modelada,,"(0, 0, 0)",-2208.6955095894496
+8,LORATADINA 10MG,94,94.0,0.0,descartada,menos_de_2_semanas_test,,
+8,LOSARTAN 50MG,95,95.0,0.0,descartada,menos_de_2_semanas_test,,
+8,METFORMINA 850MG,135,104.0,30.0,modelada,,"(0, 0, 3)",-11.500342632093965
+8,NAPROXENO TABX550MG,95,95.0,0.0,descartada,menos_de_2_semanas_test,,
+8,OMEPRAZOL 20MG,23,23.0,0.0,descartada,menos_de_2_semanas_test,,
+8,PARACETAMOL 500MG,135,104.0,30.0,modelada,,"(0, 0, 0)",-184.8822769619469
+8,VITAMINA C+ZINC+D3,130,100.0,29.0,modelada,,"(2, 0, 2)",206.69134158836914
+9,AMOXICILINA 500MG,104,83.0,20.0,modelada,,"(0, 0, 0)",4.543567932842011
+9,AZITROMICINA 500MG,135,104.0,30.0,modelada,,"(0, 0, 0)",-2208.6955095894496
+9,CETIRIZINA 10MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+9,DIMENHIDRINATO 50MG,101,70.0,30.0,modelada,,"(0, 0, 0)",-1485.3142853005886
+9,ENALAPRIL 10MG,134,104.0,29.0,modelada,,"(1, 0, 0)",61.42275789158017
+9,IBUPROFENO TABX800,103,103.0,0.0,descartada,menos_de_2_semanas_test,,
+9,LOPERAMIDA 2MG,27,0.0,27.0,descartada,menos_de_10_semanas_train,,
+9,LORATADINA 10MG,95,95.0,0.0,descartada,menos_de_2_semanas_test,,
+9,LOSARTAN 50MG,96,96.0,0.0,descartada,menos_de_2_semanas_test,,
+9,METFORMINA 850MG,132,101.0,30.0,modelada,,"(3, 0, 1)",178.1147558572728
+9,NAPROXENO TABX550MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+9,OMEPRAZOL 20MG,48,48.0,0.0,descartada,menos_de_2_semanas_test,,
+9,PARACETAMOL 500MG,133,104.0,28.0,modelada,,"(3, 2, 2)",-17.907117993351886
+9,VITAMINA C+ZINC+D3,131,103.0,27.0,modelada,,"(2, 0, 1)",263.5059249178134
+10,AMOXICILINA 500MG,104,78.0,25.0,modelada,,"(0, 0, 0)",-62.429484945017975
+10,AZITROMICINA 500MG,133,104.0,28.0,modelada,,"(0, 0, 0)",-43.781779003113854
+10,CETIRIZINA 10MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+10,DIMENHIDRINATO 50MG,131,100.0,30.0,modelada,,"(0, 0, 0)",-173.73434516848968
+10,ENALAPRIL 10MG,134,104.0,29.0,modelada,,"(2, 0, 3)",134.40519000156434
+10,IBUPROFENO TABX800,133,104.0,28.0,modelada,,"(0, 0, 0)",-2208.6955095894496
+10,LOPERAMIDA 2MG,35,5.0,29.0,descartada,menos_de_10_semanas_train,,
+10,LORATADINA 10MG,96,96.0,0.0,descartada,menos_de_2_semanas_test,,
+10,LOSARTAN 50MG,97,97.0,0.0,descartada,menos_de_2_semanas_test,,
+10,METFORMINA 850MG,110,103.0,6.0,modelada,,"(3, 0, 2)",60.86742593513091
+10,NAPROXENO TABX550MG,98,98.0,0.0,descartada,menos_de_2_semanas_test,,
+10,PARACETAMOL 500MG,132,104.0,27.0,modelada,,"(2, 1, 2)",75.0960698292214
+10,VITAMINA C+ZINC+D3,130,104.0,25.0,modelada,,"(1, 0, 2)",309.6400021399433
+11,AMOXICILINA 500MG,106,77.0,28.0,modelada,,"(0, 0, 0)",-1634.2457138306447
+11,AZITROMICINA 500MG,120,89.0,30.0,modelada,,"(0, 0, 0)",-1889.556734167887
+11,CETIRIZINA 10MG,92,92.0,0.0,descartada,menos_de_2_semanas_test,,
+11,DIMENHIDRINATO 50MG,119,89.0,29.0,modelada,,"(0, 0, 0)",-143.92323786677218
+11,ENALAPRIL 10MG,127,96.0,30.0,modelada,,"(0, 0, 0)",17.797811450630494
+11,IBUPROFENO TABX800,119,89.0,29.0,modelada,,"(0, 0, 0)",-143.92323786677218
+11,LOPERAMIDA 2MG,24,0.0,24.0,descartada,menos_de_10_semanas_train,,
+11,LORATADINA 10MG,89,89.0,0.0,descartada,menos_de_2_semanas_test,,
+11,LOSARTAN 50MG,85,85.0,0.0,descartada,menos_de_2_semanas_test,,
+11,METFORMINA 850MG,118,90.0,27.0,modelada,,"(0, 0, 0)",46.56019759615628
+11,NAPROXENO TABX550MG,93,93.0,0.0,descartada,menos_de_2_semanas_test,,
+11,OMEPRAZOL 20MG,31,31.0,0.0,descartada,menos_de_2_semanas_test,,
+11,PARACETAMOL 500MG,127,99.0,27.0,modelada,,"(0, 0, 0)",-170.97211992024287
+11,VITAMINA C+ZINC+D3,125,97.0,27.0,modelada,,"(0, 0, 0)",180.08107654247164
+12,AMOXICILINA 500MG,106,76.0,29.0,modelada,,"(0, 0, 0)",-1612.9697954692072
+12,AZITROMICINA 500MG,115,93.0,21.0,modelada,,"(0, 0, 3)",69.4256735582307
+12,CETIRIZINA 10MG,87,87.0,0.0,descartada,menos_de_2_semanas_test,,
+12,DIMENHIDRINATO 50MG,123,93.0,29.0,modelada,,"(0, 0, 0)",-91.16831632821234
+12,ENALAPRIL 10MG,121,92.0,28.0,modelada,,"(2, 0, 2)",93.45225141180248
+12,IBUPROFENO TABX800,123,93.0,29.0,modelada,,"(0, 0, 0)",-1974.6604076136339
+12,LOPERAMIDA 2MG,1,,,descartada,menos_de_20_semanas,,
+12,LORATADINA 10MG,74,74.0,0.0,descartada,menos_de_2_semanas_test,,
+12,LOSARTAN 50MG,84,84.0,0.0,descartada,menos_de_2_semanas_test,,
+12,METFORMINA 850MG,117,87.0,29.0,modelada,,"(1, 0, 1)",71.797550635128
+12,NAPROXENO TABX550MG,86,86.0,0.0,descartada,menos_de_2_semanas_test,,
+12,PARACETAMOL 500MG,122,93.0,28.0,modelada,,"(0, 0, 0)",-154.61460022979392
+12,VITAMINA C+ZINC+D3,120,91.0,28.0,modelada,,"(0, 0, 3)",334.14201370631235
+13,AMOXICILINA 500MG,99,74.0,24.0,modelada,,"(0, 0, 0)",-1570.417958746333
+13,AZITROMICINA 500MG,105,74.0,30.0,modelada,,"(0, 0, 0)",-105.50473182012145
+13,CETIRIZINA 10MG,67,67.0,0.0,descartada,menos_de_2_semanas_test,,
+13,DIMENHIDRINATO 50MG,95,64.0,30.0,modelada,,"(0, 0, 0)",-81.55227962085452
+13,ENALAPRIL 10MG,103,72.0,30.0,modelada,,"(0, 0, 0)",23.149050924112807
+13,IBUPROFENO TABX800,93,64.0,28.0,modelada,,"(0, 0, 0)",-1357.658775131966
+13,LORATADINA 10MG,67,67.0,0.0,descartada,menos_de_2_semanas_test,,
+13,LOSARTAN 50MG,51,51.0,0.0,descartada,menos_de_2_semanas_test,,
+13,METFORMINA 850MG,64,34.0,29.0,modelada,,"(0, 0, 0)",2.0973294350527443
+13,NAPROXENO TABX550MG,68,68.0,0.0,descartada,menos_de_2_semanas_test,,
+13,OMEPRAZOL 20MG,84,70.0,13.0,modelada,,"(0, 0, 0)",-95.75048379131222
+13,PARACETAMOL 500MG,28,9.0,18.0,descartada,menos_de_10_semanas_train,,
+13,VITAMINA C+ZINC+D3,97,74.0,22.0,modelada,,"(0, 0, 0)",147.58961507106036
+14,AMOXICILINA 500MG,33,33.0,0.0,descartada,menos_de_2_semanas_test,,
+14,AZITROMICINA 500MG,82,55.0,26.0,modelada,,"(0, 0, 0)",-1166.1755098790272
+14,CETIRIZINA 10MG,49,49.0,0.0,descartada,menos_de_2_semanas_test,,
+14,DIMENHIDRINATO 50MG,65,34.0,30.0,modelada,,"(0, 0, 0)",-719.381224288857
+14,ENALAPRIL 10MG,92,61.0,30.0,modelada,,"(0, 1, 1)",24.157768701412582
+14,IBUPROFENO TABX800,66,35.0,30.0,modelada,,"(0, 0, 0)",-740.6571426502951
+14,LORATADINA 10MG,52,52.0,0.0,descartada,menos_de_2_semanas_test,,
+14,LOSARTAN 50MG,39,39.0,0.0,descartada,menos_de_2_semanas_test,,
+14,METFORMINA 850MG,89,61.0,27.0,modelada,,"(0, 0, 0)",95.72459651296873
+14,NAPROXENO TABX550MG,55,55.0,0.0,descartada,menos_de_2_semanas_test,,
+14,OMEPRAZOL 20MG,32,32.0,0.0,descartada,menos_de_2_semanas_test,,
+14,PARACETAMOL 500MG,31,2.0,28.0,descartada,menos_de_10_semanas_train,,
+14,VITAMINA C+ZINC+D3,90,60.0,29.0,modelada,,"(1, 0, 3)",175.10254350924868
+15,AMOXICILINA 500MG,83,53.0,29.0,modelada,,"(0, 0, 0)",-1123.623673156157
+15,AZITROMICINA 500MG,69,46.0,22.0,modelada,,"(0, 0, 0)",-42.58618873379105
+15,CETIRIZINA 10MG,49,49.0,0.0,descartada,menos_de_2_semanas_test,,
+15,DIMENHIDRINATO 50MG,46,16.0,29.0,modelada,,"(0, 0, 0)",4.011997188675566
+15,ENALAPRIL 10MG,77,46.0,30.0,modelada,,"(0, 0, 0)",40.343039182565846
+15,IBUPROFENO TABX800,80,49.0,30.0,modelada,,"(0, 1, 1)",-10.43607776946608
+15,LOPERAMIDA 2MG,2,,,descartada,menos_de_20_semanas,,
+15,LORATADINA 10MG,49,49.0,0.0,descartada,menos_de_2_semanas_test,,
+15,LOSARTAN 50MG,44,44.0,0.0,descartada,menos_de_2_semanas_test,,
+15,METFORMINA 850MG,79,49.0,29.0,modelada,,"(3, 1, 2)",9.23304937823741
+15,NAPROXENO TABX550MG,49,49.0,0.0,descartada,menos_de_2_semanas_test,,
+15,OMEPRAZOL 20MG,9,,,descartada,menos_de_20_semanas,,
+15,PARACETAMOL 500MG,38,7.0,30.0,descartada,menos_de_10_semanas_train,,
+15,VITAMINA C+ZINC+D3,86,55.0,30.0,modelada,,"(3, 1, 3)",197.36111873922843
+16,AMOXICILINA 500MG,47,18.0,28.0,modelada,,"(0, 0, 0)",-378.9665305058657
+16,AZITROMICINA 500MG,50,24.0,25.0,modelada,,"(0, 0, 0)",-506.6220406744876
+16,CETIRIZINA 10MG,25,25.0,0.0,descartada,menos_de_2_semanas_test,,
+16,DIMENHIDRINATO 50MG,63,32.0,30.0,modelada,,"(0, 0, 0)",27.25397846509291
+16,ENALAPRIL 10MG,43,13.0,29.0,modelada,,"(0, 0, 0)",14.387270465379824
+16,IBUPROFENO TABX800,59,30.0,28.0,modelada,,"(0, 0, 0)",-634.27755084311
+16,LOPERAMIDA 2MG,37,6.0,30.0,descartada,menos_de_10_semanas_train,,
+16,LORATADINA 10MG,22,22.0,0.0,descartada,menos_de_2_semanas_test,,
+16,LOSARTAN 50MG,19,,,descartada,menos_de_20_semanas,,
+16,METFORMINA 850MG,59,30.0,28.0,modelada,,"(0, 0, 0)",-13.916655939279803
+16,NAPROXENO TABX550MG,25,25.0,0.0,descartada,menos_de_2_semanas_test,,
+16,PARACETAMOL 500MG,39,10.0,28.0,modelada,,"(0, 0, 0)",-208.75918361437002
+16,VITAMINA C+ZINC+D3,62,32.0,29.0,modelada,,"(1, 0, 2)",94.92746452577626
+17,AMOXICILINA 500MG,19,,,descartada,menos_de_20_semanas,,
+17,AZITROMICINA 500MG,22,1.0,20.0,descartada,menos_de_10_semanas_train,,
+17,DIMENHIDRINATO 50MG,23,0.0,23.0,descartada,menos_de_10_semanas_train,,
+17,ENALAPRIL 10MG,35,4.0,30.0,descartada,menos_de_10_semanas_train,,
+17,IBUPROFENO TABX800,33,2.0,30.0,descartada,menos_de_10_semanas_train,,
+17,LOPERAMIDA 2MG,28,0.0,28.0,descartada,menos_de_10_semanas_train,,
+17,METFORMINA 850MG,4,,,descartada,menos_de_20_semanas,,
+17,PARACETAMOL 500MG,35,4.0,30.0,descartada,menos_de_10_semanas_train,,
+17,VITAMINA C+ZINC+D3,23,0.0,23.0,descartada,menos_de_10_semanas_train,,
+18,AZITROMICINA 500MG,27,0.0,27.0,descartada,menos_de_10_semanas_train,,
+18,DIMENHIDRINATO 50MG,30,0.0,30.0,descartada,menos_de_10_semanas_train,,
+18,ENALAPRIL 10MG,21,0.0,21.0,descartada,menos_de_10_semanas_train,,
+18,IBUPROFENO TABX800,19,,,descartada,menos_de_20_semanas,,
+18,LOPERAMIDA 2MG,31,0.0,30.0,descartada,menos_de_10_semanas_train,,
+18,METFORMINA 850MG,18,,,descartada,menos_de_20_semanas,,
+18,PARACETAMOL 500MG,5,,,descartada,menos_de_20_semanas,,
+18,VITAMINA C+ZINC+D3,1,,,descartada,menos_de_20_semanas,,
+19,AZITROMICINA 500MG,22,0.0,22.0,descartada,menos_de_10_semanas_train,,
+19,DIMENHIDRINATO 50MG,16,,,descartada,menos_de_20_semanas,,
+19,ENALAPRIL 10MG,14,,,descartada,menos_de_20_semanas,,
+19,IBUPROFENO TABX800,3,,,descartada,menos_de_20_semanas,,
+19,METFORMINA 850MG,6,,,descartada,menos_de_20_semanas,,
+19,VITAMINA C+ZINC+D3,23,0.0,23.0,descartada,menos_de_10_semanas_train,,

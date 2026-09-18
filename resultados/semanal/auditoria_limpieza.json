@@ -1,0 +1,63 @@
+{
+  "registros_iniciales": 44389,
+  "registros_negativos_eliminados": 74,
+  "suma_cantidades_negativas": -93.0,
+  "registros_nulos_eliminados": 0,
+  "registros_finales": 44315,
+  "productos_afectados": [
+    "AMOXICILINA 500MG",
+    "AZITROMICINA 500MG",
+    "CETIRIZINA 10MG",
+    "DIMENHIDRINATO 50MG",
+    "ENALAPRIL 10MG",
+    "LOSARTAN 50MG",
+    "METFORMINA 850MG",
+    "NAPROXENO TABX550MG",
+    "PARACETAMOL 500MG",
+    "VITAMINA C+ZINC+D3"
+  ],
+  "sucursales_afectadas": [
+    "1",
+    "10",
+    "11",
+    "12",
+    "15",
+    "16",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "9"
+  ],
+  "productos_afectados_negativos": [
+    "AMOXICILINA 500MG",
+    "AZITROMICINA 500MG",
+    "CETIRIZINA 10MG",
+    "DIMENHIDRINATO 50MG",
+    "ENALAPRIL 10MG",
+    "LOSARTAN 50MG",
+    "METFORMINA 850MG",
+    "NAPROXENO TABX550MG",
+    "PARACETAMOL 500MG",
+    "VITAMINA C+ZINC+D3"
+  ],
+  "sucursales_afectadas_negativos": [
+    "1",
+    "10",
+    "11",
+    "12",
+    "15",
+    "16",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "9"
+  ],
+  "productos_afectados_nulos": [],
+  "sucursales_afectadas_nulos": []
+}

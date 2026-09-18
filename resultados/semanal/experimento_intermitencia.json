@@ -1,0 +1,87 @@
+{
+  "version_analisis": "intermitencia_train_adi_cv2_v1",
+  "commit_experimento_base": "b5bbf88226f6188d3dc5ebe297b791f6122edba6",
+  "entrenamiento_realizado": false,
+  "predicciones_modificadas": false,
+  "app_modificada": false,
+  "observaciones_comunes": 3444,
+  "series_comunes": 129,
+  "modelos": [
+    "Regresión Lineal",
+    "Random Forest",
+    "XGBoost",
+    "ARIMA (Optimizado ADF/AIC)"
+  ],
+  "fecha_corte": "2026-01-01",
+  "clasificacion": "sólo TRAIN; n/n_positivo; CV2 de tamaños positivos con varianza muestral ddof=1",
+  "umbrales": {
+    "ADI": 1.32,
+    "CV2": 0.49,
+    "igualdad": "lado superior >= corte"
+  },
+  "referencia": "https://doi.org/10.1057/palgrave.jors.2601841",
+  "intervalos_ceros": [
+    {
+      "intervalo_ceros": "Q1",
+      "limite_inferior": 18.181818181818183,
+      "limite_superior": 88.46153846153845,
+      "inferior_inclusivo": true
+    },
+    {
+      "intervalo_ceros": "Q2",
+      "limite_inferior": 88.46153846153845,
+      "limite_superior": 97.11538461538461,
+      "inferior_inclusivo": false
+    },
+    {
+      "intervalo_ceros": "Q3",
+      "limite_inferior": 97.11538461538461,
+      "limite_superior": 100.0,
+      "inferior_inclusivo": false
+    }
+  ],
+  "empates_metricas": {
+    "rtol": 1e-09,
+    "atol": 1e-12
+  },
+  "R2": "NaN si n<2 o SST=0; no force_finite. Alertas relativas a varianza/ceros globales, no umbrales clínicos.",
+  "python": "3.12.14",
+  "versiones": {
+    "pandas": "3.0.5",
+    "numpy": "2.5.3",
+    "matplotlib": "3.11.1"
+  },
+  "entradas_sha256": {
+    "resultados/semanal/predicciones_comunes.csv": "33e68d6669a8f8a9abaea166a4236b524032872a6a106529beebec3ba162afdc",
+    "resultados/semanal/dataset_semanal.csv": "bd9b2dcffcbe664443905f71db69ef8b8b895093e8929248a377803230cc4ab7",
+    "resultados/semanal/resumen_cobertura.csv": "0b67f399688d97297220d98d1ee76717ca6cec5e0efe8c5cddf9c28bafbe32e2"
+  },
+  "codigo_sha256": {
+    "src/analisis_intermitencia.py": "23ecf226b45d27ce1e4739df64328be9fd5fc9f6ca24b64a029cea046253e2f6",
+    "src/informe_intermitencia.py": "51abb7fba372df3636e10e939aa6eb1f216e1b0a40d3588a3aef5862abe58e5a",
+    "scripts/analizar_intermitencia.py": "8fb53ec271f5203fcfc4cae2c8a42c41075b481d8e19c0d2f8ef78c3c4988d3c"
+  },
+  "salidas_sha256": {
+    "resultados/semanal/clasificacion_intermitencia.csv": "3c17f508c80e3da983ce332e16d05afef10e9493095d150adea5e426c440d553",
+    "resultados/semanal/metricas_por_intermitencia.csv": "2991ea25572a28b314317f07c137603d49db2020351c21bd0b6eb5997eba29db",
+    "resultados/semanal/metricas_por_grupo_demanda.csv": "2e1b97e7f41608ad6d68e1f646a5f8f22a968dffd996bd07ffa3752131dab909",
+    "resultados/semanal/metricas_por_ceros.csv": "5da403758daa31940f0a0d6e832d32280dd8f20b5617383a9a8e1888f40b1a6f",
+    "resultados/semanal/metricas_cero_vs_positivo.csv": "b3640d7a95ad905de2d0bef426e8c8f24b97d2993848d59301ff5358ecf61b80",
+    "resultados/semanal/auditoria_predicciones_negativas.csv": "3ed44fd666ace5650ee7ada8d097bd1870e4abeb925da079cf6811c9e72d0b02",
+    "resultados/semanal/metricas_por_serie.csv": "095dc5adfa80790474df4aef271034b86af1a9eb927ecb0b7ef5bbf2def4feda",
+    "resultados/semanal/conteo_minimos_por_serie.csv": "361d68540c0eadcbdfcb3e700bbbcdbd10ac161d2497760d429e3424c6af4c8e",
+    "resultados/semanal/conteo_minimos_ml_por_serie.csv": "406a542f32488a6f287a78ad2875e1f34386060cb7706f1cf3bcc3e97274fa56",
+    "resultados/semanal/conteo_minimos_por_tipo_serie.csv": "b5d5c5b74d0965f37fc66fc3cf564932cee87a9eb058e7ceadc4fd60b11675b8",
+    "resultados/semanal/contribuciones_error.csv": "905787e98ebe2439f98d568d14ce107cb6fd584bcf60c24da7ca0a7ae01e979a",
+    "resultados/semanal/evaluacion_despliegue.csv": "dba50ad6871a268e2ee390033a2bf5070c330053f6da3924a0b8adfb07e7699d",
+    "resultados/semanal/distribucion_intermitencia.csv": "772fa0726e445de02f7b7f0786c5cfc2c5c8110094db9d4fba0c412bd9a7bb7c",
+    "resultados/semanal/asociacion_ceros_error.csv": "63a62b64d3cc26214cfb5a117cc0869c9b74e20a2fbfc156f2c0d9082d9423ec",
+    "resultados/semanal/figuras_intermitencia/01_mae_por_patron.png": "a2e08782bbf775ea49669a17c91721284ea35760715f2f57d4edc71026f2f9df",
+    "resultados/semanal/figuras_intermitencia/02_rmse_por_patron.png": "383c75e549c85d2bcda139c052c911eea1aa96b7fbf2f4d228914c4ec377cd5a",
+    "resultados/semanal/figuras_intermitencia/03_error_por_ceros.png": "62562a3a47cc69bda988e27dcb1d907287cd7e3c1f4fb9438642e0c302c96f28",
+    "resultados/semanal/figuras_intermitencia/04_error_cero_vs_positivo.png": "61395d953e1b36e24e84bcffd1226db56fe40c80cb125dc1de7c4d866e269f52",
+    "resultados/semanal/figuras_intermitencia/05_distribucion_patrones.png": "e61d2abdfd8006b479801b074ac4369d0b585fdbed4b8e9c589a98ac7760f441",
+    "docs/ANALISIS_INTERMITENCIA.md": "32985e6ecf2f3503b5a389c9de47ebca6647872b5e54591e5d59e98cca90ff9e"
+  },
+  "integridad_previa_sha256": "20260ec187d5473927c480433541a6d0d639a5059b283e7e0da2177e94c3e031"
+}

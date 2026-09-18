@@ -1,0 +1,5 @@
+universo,variable,observaciones,porcentaje_ceros,valores_positivos,saldos_negativos,media,mediana,min,max,combinaciones
+calendario_completo,cantidad_neta_original,21123,90.45590115040477,2014,2,0.14988401268759172,0.0,-10.0,14.0,240
+calendario_completo,cantidad,21123,90.4653695024381,2014,0,0.1504047720494248,0.0,0.0,14.0,240
+evaluable_sin_cruce,cantidad_neta_original,20979,90.43805710472377,2004,2,0.15024548357881692,0.0,-10.0,14.0,240
+evaluable_sin_cruce,cantidad,20979,90.44759044759044,2004,0,0.1507698174364841,0.0,0.0,14.0,240

@@ -1,0 +1,53 @@
+{
+  "version_target": "demanda_observada_sin_negativos_corte_estricto_v2",
+  "fecha_corte": "2026-01-01",
+  "frecuencia": "W-SUN",
+  "target": "Suma semanal de cantidad ERP tras excluir transacciones NaN y negativas; ceros conservados",
+  "sha256_dataset": "d57f432caea468ab5599dc0a73b2bdf0a5ac63ece3d5051bbe8169431474324e",
+  "sha256_analitico": "506b96f9eb5cbd0f30a7058976973595348b19b881a8a54a53e206a400af2325",
+  "sha256_constructor": "26a73c010b775cf1f269498844fa5e1a63a756439894acabbc8ef2c8e4234870",
+  "sha256_limpieza": "1281c960132bad3e816cec965ed3d09dafebf8f02a2c81e267b07e2425b8d885",
+  "codigo_sha256": {
+    "src/evaluacion_semanal.py": "0c882967fd895205ce6e4d92cc1c29840aaaca9e91e04d55fec70cf640694fd9",
+    "src/experimento_semanal.py": "2e13a1b57477bc860a38037e2fd607c8d64a072d5e5d09ba2356adb28a856bec",
+    "src/Modelos/ArimaPredictor.py": "384794df1fd17e76cba56bb6f140a906e4bf5d9235a5a31282a8ff314b83420d",
+    "src/Modelos/MachineLearningPipeline.py": "6ff8d2b1edf3ea0437d9310c9bfe4b73b40b4ea5f8bad50ab3776758998243cb"
+  },
+  "python": "3.12.14",
+  "versiones": {
+    "pandas": "3.0.5",
+    "numpy": "2.5.3",
+    "statsmodels": "0.15.0",
+    "scikit-learn": "1.9.0",
+    "xgboost": "3.4.1",
+    "joblib": "1.6.0"
+  },
+  "generado_utc": "2026-09-18T03:46:44.318395+00:00",
+  "modelo": "Random Forest",
+  "criterio_seleccion": "Artefacto exportado sin declarar ganador; comparar en comparacion_modelos_comun.csv",
+  "entrenado_solo_en_train": true,
+  "train_inicio": "2024-03-03 00:00:00",
+  "train_fin": "2025-12-28 00:00:00",
+  "columnas_entrada": [
+    "sucursal",
+    "producto",
+    "lag_1",
+    "lag_2",
+    "lag_4",
+    "lag_8",
+    "rolling_mean_4",
+    "rolling_mean_8",
+    "mes",
+    "semana_del_anio",
+    "trimestre"
+  ],
+  "metricas_holdout": {
+    "MAE": 0.21062272190071815,
+    "RMSE": 0.5233093954133384,
+    "R2": 0.30308568062372065
+  },
+  "poblacion_metricas": "propia",
+  "observaciones_holdout": 3940,
+  "sha256_modelo": "79261addafd21e346fe9a4dc9e113c9349a4153b093d28eace6538c42edaf4ae",
+  "predicciones_negativas": "Se conservan sin recorte"
+}

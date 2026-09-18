@@ -1,0 +1,8 @@
+clasificacion_demanda,Series_comunes,Series_dataset
+suave,1,1
+erratica,0,0
+intermitente,63,100
+lumpy,5,6
+positivas_insuficientes,23,39
+sin_demanda_positiva,37,72
+sin_historia_train,0,22

@@ -30,6 +30,9 @@ try:
     constructor = BASE / 'src/preprocessing/demanda_semanal.py'
     if hashlib.sha256(constructor.read_bytes()).hexdigest() != meta['sha256_constructor']:
         raise ValueError('El constructor semanal cambió desde la exportación. Verifique EDA 07.')
+    limpieza = BASE / 'src/preprocessing/clean_data.py'
+    if hashlib.sha256(limpieza.read_bytes()).hexdigest() != meta['sha256_limpieza']:
+        raise ValueError('La limpieza cambió desde la exportación del modelo.')
     modelo = cargar_modelo(str(ruta), ruta.stat().st_mtime_ns)
     ruta_datos = BASE / 'datasets/dataset_maestro_dashboard.csv'
     df, semanal = cargar_datos(str(ruta_datos), ruta_datos.stat().st_mtime_ns)
@@ -41,7 +44,7 @@ sucursal = st.sidebar.selectbox('Sucursal', sorted(semanal.sucursal.unique()))
 productos = sorted(semanal.loc[semanal.sucursal.eq(sucursal), 'producto'].unique())
 producto = st.sidebar.selectbox('Producto', productos)
 serie = semanal.loc[semanal.sucursal.eq(sucursal) & semanal.producto.eq(producto)]
-st.info('Objetivo: cantidad neta semanal registrada en ERP, truncada a cero después de sumar. No incluye conversión entre cajas y unidades ni estima demanda perdida por falta de stock.')
+st.info('Objetivo: cantidad semanal observada en ERP tras eliminar transacciones nulas y negativas antes de sumar. No incluye conversión entre cajas y unidades ni estima demanda perdida por falta de stock.')
 a, b, c = st.columns(3)
 a.metric('Cantidad semanal acumulada', f"{serie.cantidad.sum():,.2f}")
 b.metric('Promedio por semana registrada', f"{serie.cantidad.mean():.3f}")
@@ -78,7 +81,8 @@ if confirmado:
             st.warning(str(exc))
 
 st.subheader('Resultados del experimento temporal')
-st.caption('Holdout desde 2026-01-01. Regresión Lineal: menor RMSE y mayor R² entre ML; XGBoost: menor MAE en el experimento exportado. La selección se hizo tras observar este holdout y requiere validación futura independiente.')
+st.caption('Holdout desde 2026-01-01. El motor configurado es Regresión Lineal; la tabla común permite comparar las métricas actuales sin imponer un ganador.')
+st.write('Métricas de cobertura propia del motor (población distinta de la comparación común):')
 st.dataframe(pd.DataFrame([{'Modelo': meta['modelo'], **meta['metricas_holdout'],
     'Observaciones': meta['observaciones_holdout']}]), hide_index=True)
 resultados = BASE / 'resultados/semanal'
@@ -88,8 +92,14 @@ try:
     for clave in ['sha256_dataset', 'sha256_constructor', 'version_target']:
         if not (ml[clave] == arima[clave] == meta[clave]):
             raise ValueError('Los resultados pertenecen a versiones distintas del experimento.')
-    st.dataframe(pd.read_csv(resultados / 'comparacion_modelos.csv'), hide_index=True)
-    st.caption('Comparación descriptiva: ARIMA usa origen fijo y distinta cobertura; ML usa historia observada semana a semana. No se declara un ganador general entre los cuatro modelos.')
+    comun = json.loads((resultados / 'experimento_comun.json').read_text(encoding='utf-8'))
+    for clave in ['sha256_dataset','sha256_constructor','sha256_limpieza','version_target']:
+        if comun[clave] != meta[clave]:
+            raise ValueError('La comparación común no corresponde al motor exportado.')
+    st.write('Comparación sobre las mismas claves sucursal-producto-semana:')
+    tabla_comun = pd.read_csv(resultados / 'comparacion_modelos_comun.csv')
+    st.dataframe(tabla_comun.style.format({'MAE':'{:.4f}', 'RMSE':'{:.4f}', 'R2':'{:.4f}'}), hide_index=True)
+    st.caption('La población de esta tabla es idéntica para los cuatro modelos. ARIMA usa origen fijo; ML usa historia observada semana a semana. No se declara un ganador general entre los cuatro modelos.')
 except (OSError, ValueError, KeyError) as exc:
     st.info(f'Comparación de cuatro modelos no disponible: {exc}')
 if hashlib.sha256(ruta_datos.read_bytes()).hexdigest() != meta['sha256_dataset']:

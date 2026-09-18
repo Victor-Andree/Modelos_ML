@@ -1,0 +1,5 @@
+Modelo,Predicciones_negativas,Porcentaje_predicciones_negativas,Minimo_predicho,MAE_negativas,RMSE_negativas,Negativas_con_y_cero,Negativas_con_y_positivo,Mediana_absoluta_negativas,Percentil95_absoluto_negativas
+Regresión Lineal,684,19.860627177700348,-0.05522080293804754,0.03462668864788581,0.1573264032710039,676,8,0.0190516455616686,0.04162787996491067
+Random Forest,0,0.0,0.0067519159764155455,,,0,0,,
+XGBoost,0,0.0,0.023723267018795013,,,0,0,,
+ARIMA (Optimizado ADF/AIC),1048,30.42973286875726,-0.26252648736181944,0.01192036460369617,0.12441374550101117,1038,10,4.824558165895675e-06,4.824558165895715e-06

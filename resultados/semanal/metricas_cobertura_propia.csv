@@ -1,0 +1,5 @@
+Modelo,MAE,RMSE,R2,Observaciones_evaluadas,Series_evaluadas,Poblacion,Protocolo
+Regresión Lineal,0.21740624261154645,0.5150146873859537,0.3250034500819231,3940,156,propia,"Secuencial semanal, parámetros fijos"
+Random Forest,0.21062272190071815,0.5233093954133384,0.30308568062372065,3940,156,propia,"Secuencial semanal, parámetros fijos"
+XGBoost,0.21033141810380793,0.5237875002718277,0.30181167204348347,3940,156,propia,"Secuencial semanal, parámetros fijos"
+ARIMA (Optimizado ADF/AIC),0.23633302823110328,0.5796836321886407,0.21749041943698,3444,129,propia,Multi-step desde origen fijo

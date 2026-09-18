@@ -1,0 +1,65 @@
+# Preserve bytes hashed by experiment manifests.
+resultados/** -text
+*.pkl binary
+# Original CSV checkout bytes were CRLF; keep original Git blobs unchanged.
+datasets/**/*.csv text eol=crlf
+app.py -text
+notebooks/06_Entrenamiento_ARIMA.ipynb -text
+notebooks/07_Entrenamiento_MachineLearning.ipynb -text
+notebooks/08_EDA_Intermitencia_Series.ipynb -text
+notebooks/modelo_random_forest_semanal.json -text
+notebooks/modelo_regresion_lineal_semanal.json -text
+notebooks/modelo_xgboost_semanal.json -text
+scripts/ejecutar_experimento_semanal.py -text
+scripts/validar_evidencia_semanal.py -text
+src/Modelos/ArimaPredictor.py -text
+src/Modelos/MachineLearningPipeline.py -text
+src/dashboard_semanal.py -text
+src/evaluacion_semanal.py -text
+src/experimento_semanal.py -text
+src/preprocessing/clean_data.py -text
+src/preprocessing/demanda_semanal.py -text
+src/preprocessing/prediccion_dashboard.py -text
+test_comparacion_comun.py -text
+test_demanda_semanal.py -text
+src/analisis_intermitencia.py -text
+src/informe_intermitencia.py -text
+scripts/analizar_intermitencia.py -text
+scripts/validar_analisis_intermitencia.py -text
+test_analisis_intermitencia.py -text
+docs/integridad_previa_intermitencia.json -text
+docs/ANALISIS_INTERMITENCIA.md -text
+
+# Preserve byte identity of protected pre-analysis text across platforms.
+".gitignore" text eol=crlf
+"README.md" text eol=crlf
+"datasets/dataset_maestro_dashboard.csv" text eol=crlf
+"datasets/final/AMOXICILINA 500MG(2024-2026)_final.csv" text eol=crlf
+"datasets/final/AZITROMICINA 500MG(2024-2026)_final.csv" text eol=crlf
+"datasets/final/CETIRIZINA 10MG(2024-2026)_final.csv" text eol=crlf
+"datasets/final/DIMENHIDRINATO 50MG(2024-2026)_final.csv" text eol=crlf
+"datasets/final/ENALAPRIL 10MG(2024-2026)_final.csv" text eol=crlf
+"datasets/final/IBUPROFENO TABX800(2024-2026)_final.csv" text eol=crlf
+"datasets/final/LOPERAMIDA 2MG(2024-2026)_final.csv" text eol=crlf
+"datasets/final/LORATADINA 10MG(2024-2026)_final.csv" text eol=crlf
+"datasets/final/LOSARTAN 50MG(2024-2026)I_final.csv" text eol=crlf
+"datasets/final/METFORMINA 850MG(2024-2026)_final.csv" text eol=crlf
+"datasets/final/NAPROXENO TABX550MG(2024-2026)_final.csv" text eol=crlf
+"datasets/final/OMEPRAZOL 20MG(2024-2026) I_final.csv" text eol=crlf
+"datasets/final/PARACETAMOL 500MG(2024-2026)_final.csv" text eol=crlf
+"datasets/final/VITAMINA C+ZINC+D3(2024-2026)_final.csv" text eol=crlf
+"docs/CIERRE_POBLACION_COMUN.md" text eol=crlf
+"docs/REPRODUCIR_POBLACION_COMUN.md" text eol=crlf
+"exportacion.py" text eol=crlf
+"notebooks/01_EDA.ipynb" text eol=crlf
+"notebooks/02_Analisis_ABC_Inventarios.ipynb" text eol=crlf
+"notebooks/03_EDA_INVENTARIOS.ipynb" text eol=crlf
+"notebooks/04_Generador_Dashboard.ipynb" text eol=crlf
+"notebooks/05_Ingenieria_Y_Entrenammiento.ipynb" text eol=crlf
+"requirements-semanal.txt" text eol=crlf
+"src/Modelos/linear_regression.py" text eol=crlf
+"src/Modelos/random_forest.py" text eol=crlf
+"src/Modelos/xgboost_model.py" text eol=crlf
+"src/data/load_data.py" text eol=crlf
+"src/data/save_data.py" text eol=crlf
+"src/preprocessing/feature_engineering.py" text eol=crlf

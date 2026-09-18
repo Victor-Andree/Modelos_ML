@@ -28,12 +28,12 @@ class SemanalTests(unittest.TestCase):
         original = self.ejemplo()
         semanal = construir_semanal(original)
         self.assertEqual(semanal[semanal.sucursal.eq(1)].cantidad.tolist(), [2., 0., 7.])
-        self.assertEqual(len(semanal[semanal.sucursal.eq(2)]), 1)
-        self.assertEqual(semanal.cantidad_neta_original.sum(), original.cantidad.sum())
+        self.assertEqual(len(semanal[semanal.sucursal.eq(2)]), 0)
+        self.assertEqual(semanal.cantidad.sum(), original.loc[original.cantidad.ge(0), 'cantidad'].sum())
         self.assertEqual(semanal.semana.dt.dayofweek.unique().tolist(), [6])
 
     def test_nan_no_es_cero(self):
-        for columna in ['cantidad', 'fecdoc', 'sucursal', 'producto']:
+        for columna in ['fecdoc', 'sucursal', 'producto']:
             df = self.ejemplo(); df[columna] = df[columna].astype(object); df.loc[0, columna] = None
             with self.assertRaises(ValueError): construir_semanal(df)
 
@@ -60,12 +60,7 @@ class SemanalTests(unittest.TestCase):
             self.assertFalse(set(fechas.iloc[a]) & set(fechas.iloc[b]))
 
     def test_encoder_y_predicciones_del_notebook(self):
-        nb = json.loads((ROOT/'notebooks/07_Entrenamiento_MachineLearning.ipynb').read_text(encoding='utf-8'))
-        source = next(''.join(c['source']) for c in nb['cells'] if c.get('id') == 'clase-modelos')
-        nodo = next(n for n in ast.parse(source).body if isinstance(n, ast.ClassDef))
-        espacio = dict(globals())
-        exec(compile(ast.Module(body=[nodo], type_ignores=[]), '<notebook>', 'exec'), espacio)
-        Clase = espacio['MachineLearningPipeline']
+        from src.Modelos.MachineLearningPipeline import MachineLearningPipeline as Clase
         x = pd.DataFrame({c: np.arange(16, dtype=float) for c in NUMERICAS})
         x['sucursal'] = 1; x['producto'] = 'A'
         xt = x.iloc[:2].copy(); xt['producto'] = 'NUEVO'
@@ -90,20 +85,17 @@ class TargetDefinitivoTests(unittest.TestCase):
         if fechas is None: fechas = ['2025-12-01'] * len(valores)
         return pd.DataFrame({'sucursal':1, 'producto':'A', 'fecdoc':fechas, 'cantidad':valores})
 
-    def test_venta_y_anulacion_neto_cero(self):
+    def test_negativo_eliminado_no_compensa_venta(self):
         s = construir_semanal(self.transacciones([1,-1]))
-        self.assertEqual(s.cantidad_neta_original.tolist(), [0])
-        self.assertEqual(s.cantidad.tolist(), [0])
+        self.assertEqual(s.cantidad.tolist(), [1])
 
-    def test_saldo_menos_dos_truncado_despues_de_sumar(self):
+    def test_no_se_trunca_saldo_semanal(self):
         s = construir_semanal(self.transacciones([1,-3]))
-        self.assertEqual(s.cantidad_neta_original.tolist(), [-2])
-        self.assertEqual(s.cantidad.tolist(), [0])
+        self.assertEqual(s.cantidad.tolist(), [1])
 
     def test_saldo_positivo_no_se_modifica(self):
         s = construir_semanal(self.transacciones([5,-2]))
-        self.assertEqual(s.cantidad_neta_original.tolist(), [3])
-        self.assertEqual(s.cantidad.tolist(), [3])
+        self.assertEqual(s.cantidad.tolist(), [5])
 
     def test_corte_no_contiene_diciembre(self):
         df = self.transacciones([10,20,30], ['2025-12-31','2026-01-01','2026-01-05'])
@@ -138,6 +130,7 @@ class TargetDefinitivoTests(unittest.TestCase):
         fechas = pd.date_range('2025-08-03', '2026-02-01', freq='W-SUN')
         df = self.transacciones([1]*len(fechas), fechas)
         class FakeARIMA:
+            aic = 1.0
             def __init__(self, train, order):
                 assert train.index.max() == pd.Timestamp('2025-12-28')
                 assert train.min() >= 0

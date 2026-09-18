@@ -1,0 +1,5 @@
+Modelo,Predicciones_originales,Predicciones_no_finitas,Observaciones_evaluadas,Series_evaluadas,Observaciones_comunes,Series_comunes,Observaciones_fuera_comun,Fraccion_observaciones_retenidas
+Regresión Lineal,3940,0,3940,156,3444,129,496,0.8741116751269036
+Random Forest,3940,0,3940,156,3444,129,496,0.8741116751269036
+XGBoost,3940,0,3940,156,3444,129,496,0.8741116751269036
+ARIMA (Optimizado ADF/AIC),3444,0,3444,129,3444,129,0,1.0

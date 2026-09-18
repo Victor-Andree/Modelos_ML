@@ -1,3 +1,4 @@
+"""Agregación semanal y variables causales compartidas por ML y EDA."""
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import TimeSeriesSplit
@@ -9,18 +10,19 @@ NUMERICAS = ['lag_1', 'lag_2', 'lag_4', 'lag_8', 'rolling_mean_4',
 
 
 def construir_semanal(df):
-    """Suma neta ERP; conserva el neto y trunca sólo el saldo semanal del target.
+    """Demanda observada: elimina NaN/negativos ANTES de sumar por W-SUN.
 
-    Ceros sólo en huecos interiores sin registros; NaN de origen es un error.
-    No convierte cajas/unidades ni elimina transacciones negativas.
+    Conserva ceros y rellena huecos interiores del calendario de cada serie
+    depurada. No extiende los extremos sin evidencia de continuidad.
+    No convierte unidades ni aplica clip sobre sumas semanales.
     """
-    datos = df[CLAVES + ['fecdoc', 'cantidad']].copy()
-    if datos.empty or datos.isna().any().any():
-        raise ValueError('Dataset vacío o campos requeridos desconocidos; no imputar NaN como cero.')
+    from src.preprocessing.clean_data import depurar_demanda
+    datos, _ = depurar_demanda(df[CLAVES + ['fecdoc', 'cantidad']])
+    if datos.empty or datos[CLAVES + ['fecdoc']].isna().any().any():
+        raise ValueError('No hay demanda analítica o hay claves/fechas desconocidas')
     datos['fecdoc'] = pd.to_datetime(datos['fecdoc'], errors='raise')
-    datos['cantidad'] = pd.to_numeric(datos['cantidad'], errors='raise')
-    if datos['fecdoc'].isna().any() or not np.isfinite(datos['cantidad']).all():
-        raise ValueError('Fechas o cantidades no válidas.')
+    if datos.fecdoc.isna().any():
+        raise ValueError('Fechas no válidas')
     partes = []
     for (sucursal, producto), grupo in datos.groupby(CLAVES, observed=True):
         resample = grupo.set_index('fecdoc')['cantidad'].resample('W-SUN')
@@ -30,10 +32,8 @@ def construir_semanal(df):
         parte['sucursal'], parte['producto'] = sucursal, producto
         partes.append(parte)
     semanal = pd.concat(partes, ignore_index=True)[CLAVES + ['semana', 'cantidad']]
-    semanal['cantidad_neta_original'] = semanal['cantidad']
-    semanal['cantidad'] = semanal['cantidad_neta_original'].clip(lower=0)
-    return semanal[CLAVES + ['semana', 'cantidad_neta_original', 'cantidad']].sort_values(
-        CLAVES + ['semana']).reset_index(drop=True)
+    assert semanal.cantidad.notna().all() and semanal.cantidad.ge(0).all()
+    return semanal.sort_values(CLAVES + ['semana']).reset_index(drop=True)
 
 
 def agregar_features(semanal):

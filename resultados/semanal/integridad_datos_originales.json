@@ -1,0 +1,147 @@
+{
+  "datasets/dataset_maestro_dashboard.csv": {
+    "sha256_antes": "d57f432caea468ab5599dc0a73b2bdf0a5ac63ece3d5051bbe8169431474324e",
+    "sha256_despues": "d57f432caea468ab5599dc0a73b2bdf0a5ac63ece3d5051bbe8169431474324e",
+    "identico": true
+  },
+  "datasets/DataSets-LF/AMOXICILINA 500MG(2024-2026).xlsx": {
+    "sha256_antes": "69c045d35540d9e30844ed7597452839ba0db4c8ca8c546ef20122050b7a6b6e",
+    "sha256_despues": "69c045d35540d9e30844ed7597452839ba0db4c8ca8c546ef20122050b7a6b6e",
+    "identico": true
+  },
+  "datasets/DataSets-LF/AZITROMICINA 500MG(2024-2026).xlsx": {
+    "sha256_antes": "bf4977a81c6534590b960e71c137577cc606ad1eba2a06086908c56999cfbd5c",
+    "sha256_despues": "bf4977a81c6534590b960e71c137577cc606ad1eba2a06086908c56999cfbd5c",
+    "identico": true
+  },
+  "datasets/DataSets-LF/CETIRIZINA 10MG(2024-2026).xlsx": {
+    "sha256_antes": "be5df79d92fa26c26f7cb3e30ed576a616f406f04388e91d2dd7bce0098982f9",
+    "sha256_despues": "be5df79d92fa26c26f7cb3e30ed576a616f406f04388e91d2dd7bce0098982f9",
+    "identico": true
+  },
+  "datasets/DataSets-LF/DIMENHIDRINATO 50MG(2024-2026).xlsx": {
+    "sha256_antes": "5ecdf6603a6ba3526b8a420e1c4d13f7a9dd00c44032bf360fd122095f7ba0b6",
+    "sha256_despues": "5ecdf6603a6ba3526b8a420e1c4d13f7a9dd00c44032bf360fd122095f7ba0b6",
+    "identico": true
+  },
+  "datasets/DataSets-LF/ENALAPRIL 10MG(2024-2026).xlsx": {
+    "sha256_antes": "f922fa6a4855175831dd2bafe00fa17200a0bd6e6816b8c808b79b400facd3ec",
+    "sha256_despues": "f922fa6a4855175831dd2bafe00fa17200a0bd6e6816b8c808b79b400facd3ec",
+    "identico": true
+  },
+  "datasets/DataSets-LF/IBUPROFENO TABX800(2024-2026).xlsx": {
+    "sha256_antes": "92e9d4dba5a9fd63ba20f0374f0112a0e7dd34db0f667e52848ecb86877d71f4",
+    "sha256_despues": "92e9d4dba5a9fd63ba20f0374f0112a0e7dd34db0f667e52848ecb86877d71f4",
+    "identico": true
+  },
+  "datasets/DataSets-LF/LOPERAMIDA 2MG(2024-2026).xlsx": {
+    "sha256_antes": "9b3f02e04b5452c664d4e3c950f07188b4916cd879a382141ba0b82009e3dbd6",
+    "sha256_despues": "9b3f02e04b5452c664d4e3c950f07188b4916cd879a382141ba0b82009e3dbd6",
+    "identico": true
+  },
+  "datasets/DataSets-LF/LORATADINA 10MG(2024-2026).xlsx": {
+    "sha256_antes": "732add77fceb79b3b4e70b74c1ced33859b4c61422cadc52cc07fd52437f568b",
+    "sha256_despues": "732add77fceb79b3b4e70b74c1ced33859b4c61422cadc52cc07fd52437f568b",
+    "identico": true
+  },
+  "datasets/DataSets-LF/LOSARTAN 50MG(2024-2026)I.xlsx": {
+    "sha256_antes": "a56712e3670f2badc84413459f146cbee1288fbff7b5dd99fce969c3ce57a85e",
+    "sha256_despues": "a56712e3670f2badc84413459f146cbee1288fbff7b5dd99fce969c3ce57a85e",
+    "identico": true
+  },
+  "datasets/DataSets-LF/METFORMINA 850MG(2024-2026).xlsx": {
+    "sha256_antes": "be39ab9fdcb1f6eb825982bdc70d5e67f1685cc7ce8ff6db87ae67164e9a8caf",
+    "sha256_despues": "be39ab9fdcb1f6eb825982bdc70d5e67f1685cc7ce8ff6db87ae67164e9a8caf",
+    "identico": true
+  },
+  "datasets/DataSets-LF/NAPROXENO TABX550MG(2024-2026).xlsx": {
+    "sha256_antes": "4f8c495e9e071b167463204eeceb0e8309babf7390f4862a7ac647c79bc2940b",
+    "sha256_despues": "4f8c495e9e071b167463204eeceb0e8309babf7390f4862a7ac647c79bc2940b",
+    "identico": true
+  },
+  "datasets/DataSets-LF/OMEPRAZOL 20MG(2024-2026) I.xlsx": {
+    "sha256_antes": "943f25fb07c05d1e6853afee39f94e3ec576e1a50ee5c92f1bcd62b65b8e4d81",
+    "sha256_despues": "943f25fb07c05d1e6853afee39f94e3ec576e1a50ee5c92f1bcd62b65b8e4d81",
+    "identico": true
+  },
+  "datasets/DataSets-LF/PARACETAMOL 500MG(2024-2026).xlsx": {
+    "sha256_antes": "997ec5edf4d2d369b369c6765819b75988b366dac6f029a64e724cdba67797ff",
+    "sha256_despues": "997ec5edf4d2d369b369c6765819b75988b366dac6f029a64e724cdba67797ff",
+    "identico": true
+  },
+  "datasets/DataSets-LF/VITAMINA C+ZINC+D3(2024-2026).xlsx": {
+    "sha256_antes": "b39b2344f3917092912dbbb3ba50063796a5f4aceddb98f218067efb794c6147",
+    "sha256_despues": "b39b2344f3917092912dbbb3ba50063796a5f4aceddb98f218067efb794c6147",
+    "identico": true
+  },
+  "datasets/final/AMOXICILINA 500MG(2024-2026)_final.csv": {
+    "sha256_antes": "e7d83c753182a5c3ea43e591f1874bcc3264bd44b2bf646c3a61ce5c8136671d",
+    "sha256_despues": "e7d83c753182a5c3ea43e591f1874bcc3264bd44b2bf646c3a61ce5c8136671d",
+    "identico": true
+  },
+  "datasets/final/AZITROMICINA 500MG(2024-2026)_final.csv": {
+    "sha256_antes": "d6d4f0a8f56bc1eb4ea6680910b4f19e52c5c4150e2a6e94302a221217fdbc93",
+    "sha256_despues": "d6d4f0a8f56bc1eb4ea6680910b4f19e52c5c4150e2a6e94302a221217fdbc93",
+    "identico": true
+  },
+  "datasets/final/CETIRIZINA 10MG(2024-2026)_final.csv": {
+    "sha256_antes": "25946a95705239b512057910b0f385d56f26ce8b863412fc26fdd7deaa8a6a99",
+    "sha256_despues": "25946a95705239b512057910b0f385d56f26ce8b863412fc26fdd7deaa8a6a99",
+    "identico": true
+  },
+  "datasets/final/DIMENHIDRINATO 50MG(2024-2026)_final.csv": {
+    "sha256_antes": "5478467f92bc18523c9a14c9847d270a6bac53cbe8f0cab1f4169d69e94e3862",
+    "sha256_despues": "5478467f92bc18523c9a14c9847d270a6bac53cbe8f0cab1f4169d69e94e3862",
+    "identico": true
+  },
+  "datasets/final/ENALAPRIL 10MG(2024-2026)_final.csv": {
+    "sha256_antes": "f1fb893a923f5f1d59aed1c4eecac490d27391802b14a28352af1a94c119f76c",
+    "sha256_despues": "f1fb893a923f5f1d59aed1c4eecac490d27391802b14a28352af1a94c119f76c",
+    "identico": true
+  },
+  "datasets/final/IBUPROFENO TABX800(2024-2026)_final.csv": {
+    "sha256_antes": "15da9afa71182be5ff4227dd63b94d22d81db790675b94a4600c97cf5a10292e",
+    "sha256_despues": "15da9afa71182be5ff4227dd63b94d22d81db790675b94a4600c97cf5a10292e",
+    "identico": true
+  },
+  "datasets/final/LOPERAMIDA 2MG(2024-2026)_final.csv": {
+    "sha256_antes": "0fcb144455515d98a77acd01ad5d90575ad3edd31f1213f752150f75a01ffc7d",
+    "sha256_despues": "0fcb144455515d98a77acd01ad5d90575ad3edd31f1213f752150f75a01ffc7d",
+    "identico": true
+  },
+  "datasets/final/LORATADINA 10MG(2024-2026)_final.csv": {
+    "sha256_antes": "cd1d8dac67272ea39a4ac2a8e6f109d4d62ddcf2dee25ae151611e737ef1dd2b",
+    "sha256_despues": "cd1d8dac67272ea39a4ac2a8e6f109d4d62ddcf2dee25ae151611e737ef1dd2b",
+    "identico": true
+  },
+  "datasets/final/LOSARTAN 50MG(2024-2026)I_final.csv": {
+    "sha256_antes": "12d175587efd25b65614ca3f8b768a6088d546a2de707ae5d4d3406f9c6ac815",
+    "sha256_despues": "12d175587efd25b65614ca3f8b768a6088d546a2de707ae5d4d3406f9c6ac815",
+    "identico": true
+  },
+  "datasets/final/METFORMINA 850MG(2024-2026)_final.csv": {
+    "sha256_antes": "37024e9dd0f220bee5194eb802a48a4a125c16d41a7da8992e18ae24ead581f6",
+    "sha256_despues": "37024e9dd0f220bee5194eb802a48a4a125c16d41a7da8992e18ae24ead581f6",
+    "identico": true
+  },
+  "datasets/final/NAPROXENO TABX550MG(2024-2026)_final.csv": {
+    "sha256_antes": "aa77a90697806354b334d3c37900b6432a432d2bcd9fd38dcd4d5cfbb22d11ad",
+    "sha256_despues": "aa77a90697806354b334d3c37900b6432a432d2bcd9fd38dcd4d5cfbb22d11ad",
+    "identico": true
+  },
+  "datasets/final/OMEPRAZOL 20MG(2024-2026) I_final.csv": {
+    "sha256_antes": "dc7bb2b246c5cb749a32e754b7f52e1507905c3665c9277d38289159f6eaa504",
+    "sha256_despues": "dc7bb2b246c5cb749a32e754b7f52e1507905c3665c9277d38289159f6eaa504",
+    "identico": true
+  },
+  "datasets/final/PARACETAMOL 500MG(2024-2026)_final.csv": {
+    "sha256_antes": "8d0c6397a27a57cf06f8ef91b5cd84a6cc88e936dc45044ccb9b9d100fc4462e",
+    "sha256_despues": "8d0c6397a27a57cf06f8ef91b5cd84a6cc88e936dc45044ccb9b9d100fc4462e",
+    "identico": true
+  },
+  "datasets/final/VITAMINA C+ZINC+D3(2024-2026)_final.csv": {
+    "sha256_antes": "e91ca55bc0f708ea7fa75e66a3ab46245d7e735ff798ce33c55e6b4da3bc1ac1",
+    "sha256_despues": "e91ca55bc0f708ea7fa75e66a3ab46245d7e735ff798ce33c55e6b4da3bc1ac1",
+    "identico": true
+  }
+}

@@ -75,7 +75,7 @@ class DataCleaner:
         return self.df
     
     def remove_invalid_quantity(self):
-        self.df = self.df.dropna(subset=["cantidad"])
+        self.df, self.auditoria_cantidad = depurar_demanda(self.df)
         return self.df
     
     def reset_index(self):
@@ -97,3 +97,37 @@ class DataCleaner:
         self.remove_invalid_quantity()
         self.reset_index()
         return self.df
+
+def depurar_demanda(dataframe):
+    """Copia analítica: elimina nulos y negativos sin alterar el original.
+
+    No descarta ceros, no deduplica ni convierte unidades. Valores no numéricos
+    o infinitos son errores de calidad, no ceros ni nulos silenciosos.
+    """
+    import numpy as np
+    datos = dataframe.copy()
+    datos['cantidad'] = pd.to_numeric(datos['cantidad'], errors='raise')
+    nulos = datos.cantidad.isna()
+    negativos = datos.cantidad.lt(0)
+    if not np.isfinite(datos.loc[~nulos, 'cantidad']).all():
+        raise ValueError('Cantidad contiene infinitos')
+    eliminados = datos.loc[nulos | negativos]
+    def afectados(marco, columna):
+        return sorted(marco[columna].dropna().astype(str).unique().tolist()) if columna in marco else []
+    auditoria = {
+        'registros_iniciales': len(datos),
+        'registros_negativos_eliminados': int(negativos.sum()),
+        'suma_cantidades_negativas': float(datos.loc[negativos, 'cantidad'].sum()),
+        'registros_nulos_eliminados': int(nulos.sum()),
+        'registros_finales': int((~(nulos | negativos)).sum()),
+        'productos_afectados': afectados(eliminados, 'producto'),
+        'sucursales_afectadas': afectados(eliminados, 'sucursal'),
+        'productos_afectados_negativos': afectados(datos.loc[negativos], 'producto'),
+        'sucursales_afectadas_negativos': afectados(datos.loc[negativos], 'sucursal'),
+        'productos_afectados_nulos': afectados(datos.loc[nulos], 'producto'),
+        'sucursales_afectadas_nulos': afectados(datos.loc[nulos], 'sucursal'),
+    }
+    limpia = datos.loc[~(nulos | negativos)].reset_index(drop=True)
+    assert limpia.cantidad.notna().all() and limpia.cantidad.ge(0).all()
+    assert len(datos) == len(limpia) + int(negativos.sum()) + int(nulos.sum())
+    return limpia, auditoria
