@@ -1,0 +1,49 @@
+{
+  "version": "extension_intermitente_v1",
+  "commit_base": "e55512cab47d48288ed0f2fa499f5e50701fdb9a",
+  "train": 15170,
+  "test_propio": 3940,
+  "test_comun": 3444,
+  "series_comunes": 129,
+  "seleccion_solo_train": true,
+  "evaluaciones_test": 1,
+  "seleccion_sha256": "8d451103c785fd9c68f206e8a07894e65408132883f567d1e1b69cd251ac541a",
+  "python": "3.12.14",
+  "versiones": {
+    "pandas": "3.0.5",
+    "numpy": "2.5.3",
+    "scikit-learn": "1.9.0",
+    "xgboost": "3.4.1",
+    "joblib": "1.6.0"
+  },
+  "codigo_sha256": {
+    "src/extension_intermitente.py": "dc719e7575d9ab1ec1ecc32517f17476e5f6b005750dc7de33eb7963729acba1",
+    "src/informe_extension.py": "5809e7aef5afd4348fa0a6f9783384839edc2130f24ba06b249f4860ca173cdd",
+    "scripts/ejecutar_extension_intermitente.py": "aefeff5397d2886799607acfe3081347e068a7b0a44a8f8593e74e6524a77ad5"
+  },
+  "salidas_sha256": {
+    "resultados/extension_intermitente/auditoria_leakage.csv": "acde52a4568d17e81eaf894e7b2278245d8d6fc2eb1bf42c73e819e87ef3a252",
+    "resultados/extension_intermitente/baselines_intermitentes.csv": "38dce4f9a9f6d42cd9158cd2fe66077bc9be63f13044c27ea5b15dfccf918088",
+    "resultados/extension_intermitente/cobertura.csv": "f71764578ed75e63c2fe4093967ade89ff6ae4764ef385a8531802b198f25f01",
+    "resultados/extension_intermitente/comparacion_extension.csv": "c5d36350bcd89398f7eec246cd25976675ff86641a76c9e82fe7c741285e7dc0",
+    "resultados/extension_intermitente/cv_baselines_parametros.csv": "2483ffab0d8ba437a54f432a4fdb27c3332b87946c5d02acc340dc35a0e6dff3",
+    "resultados/extension_intermitente/cv_componentes.csv": "73de01cdc4244df866a926d2e49c6da1136de0237f547dc01337e4938bf72417",
+    "resultados/extension_intermitente/cv_umbrales.csv": "16ce5aec1c81e8381c1da1341170a8116e2d179cf1aac5b66e4ada348cbfc2a1",
+    "resultados/extension_intermitente/ejecucion_test.json": "2180ab67f47d108316ee200ac4109e27a4c071b0b5681b6cfab9c3629c320ea5",
+    "resultados/extension_intermitente/escalas_train.csv": "5375c034240c80669053a91d833cc657d5a804caf459577d4206fc0e7c7240cd",
+    "resultados/extension_intermitente/mejoras_relativas.csv": "a0008975f2e08ececd8aface066debfb3ff95652e0ccf85f51aa9544bff96ebf",
+    "resultados/extension_intermitente/metricas_cero_positivo.csv": "edb066553bcbe996dd93892022a54d3aa1e1cedae7fe0b7d93e649e5674a2eb7",
+    "resultados/extension_intermitente/metricas_cv.csv": "496b91d4e4490a4d5d45d6dd38b1384f8bc8003258ab25cf973da4909887f73c",
+    "resultados/extension_intermitente/metricas_por_intermitencia.csv": "951b88d03d77dcc18392bbd984e3c355f7a2f7a6efb8caa7215ffa75d7f9debb",
+    "resultados/extension_intermitente/metricas_test.csv": "d3a6be3596a3659414746b5e71a986bda9a4626886545f033865d2296850ac0f",
+    "resultados/extension_intermitente/modelo_two_stage.pkl": "4e3a2eb361570b1298940093da360e9d2f22914c85c8703fb2a5ca29baca09dc",
+    "resultados/extension_intermitente/predicciones_baselines.csv": "4b01fb84b5f78e9b8f350003400072199aacb00efe8a1663d4e8c5992352616b",
+    "resultados/extension_intermitente/predicciones_comparacion_comun.csv": "9d7756ee1082934f1b1ae486eab7c0521286fd0395bd41c8b6ae53e050bfb2f1",
+    "resultados/extension_intermitente/predicciones_nuevas.csv": "f325ab2a45e411dd940add037120a3fbf5977ec62b9691d7022d5e1b80fcf8ff",
+    "resultados/extension_intermitente/predicciones_oof_train.csv": "473c342f2a69a7984bd1cc599140ba07588c2ab0e2d6f5944a45f081631c2680",
+    "resultados/extension_intermitente/resumen_cv.csv": "235f2d2ba544b393fb986d20768559e2ee520a174c5ce66a1ca62f173af96d65",
+    "resultados/extension_intermitente/seleccion_train.json": "8d451103c785fd9c68f206e8a07894e65408132883f567d1e1b69cd251ac541a",
+    "resultados/extension_intermitente/two_stage_resultados.csv": "abbd3cbebd420c810a32fc8c7903cd4e943f61e61eb841c516afeecff30cb82a"
+  },
+  "informe_sha256": "7295e9dae143491568783b0410d4e1180ce5ca7cca1e68c155cfd62178045e06"
+}

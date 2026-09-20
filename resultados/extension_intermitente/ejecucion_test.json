@@ -1,0 +1,8 @@
+{
+  "seleccion_sha256_antes_test": "8d451103c785fd9c68f206e8a07894e65408132883f567d1e1b69cd251ac541a",
+  "seleccion_sha256_despues_test": "8d451103c785fd9c68f206e8a07894e65408132883f567d1e1b69cd251ac541a",
+  "evaluaciones_predictivas_test": 1,
+  "test_evaluado_utc": "2026-09-20T18:48:57.351071+00:00",
+  "configuracion_revisada_despues_test": false,
+  "predicciones_nuevas_sha256": "f325ab2a45e411dd940add037120a3fbf5977ec62b9691d7022d5e1b80fcf8ff"
+}

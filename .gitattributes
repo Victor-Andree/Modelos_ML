@@ -63,3 +63,13 @@ docs/ANALISIS_INTERMITENCIA.md -text
 "src/data/load_data.py" text eol=crlf
 "src/data/save_data.py" text eol=crlf
 "src/preprocessing/feature_engineering.py" text eol=crlf
+
+# Preserve extension manifest hashes on fresh checkouts.
+src/extension_intermitente.py -text
+src/informe_extension.py -text
+scripts/ejecutar_extension_intermitente.py -text
+scripts/resumir_extension_intermitente.py -text
+scripts/validar_extension_intermitente.py -text
+test_extension_intermitente.py -text
+docs/integridad_previa_extension.json -text
+docs/EXTENSION_DEMANDA_INTERMITENTE.md -text

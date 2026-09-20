@@ -1,0 +1,11 @@
+Modelo,Observaciones_propias,Series_propias,Observaciones_comunes,Series_comunes
+TwoStage,3940,156,3444,129
+Cero,3940,156,3444,129
+Naive_ultimo,3940,156,3444,129
+Croston,3940,156,3444,129
+SBA,3940,156,3444,129
+TSB,3940,156,3444,129
+Regresión Lineal,3940,156,3444,129
+Random Forest,3940,156,3444,129
+XGBoost,3940,156,3444,129
+ARIMA (Optimizado ADF/AIC),3444,129,3444,129

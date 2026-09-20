@@ -1,0 +1,71 @@
+{
+  "two_stage": {
+    "features": "basicas",
+    "clasificador": "XGBoost",
+    "regresor": "XGBoost",
+    "umbral": 0.5,
+    "MSE_cv": 0.3014259953690401,
+    "MAE_cv": 0.14988424914162404
+  },
+  "ablacion_features": [
+    {
+      "features": "basicas",
+      "clasificador": "XGBoost",
+      "regresor": "XGBoost",
+      "umbral": 0.5,
+      "MSE_cv": 0.3014259953690401,
+      "MAE_cv": 0.14988424914162404
+    },
+    {
+      "features": "intermitentes",
+      "clasificador": "XGBoost",
+      "regresor": "Random Forest",
+      "umbral": 0.5,
+      "MSE_cv": 0.313194987191349,
+      "MAE_cv": 0.15096701886419422
+    }
+  ],
+  "baselines": {
+    "Cero": {},
+    "Naive_ultimo": {},
+    "Croston": {
+      "alpha": 0.2
+    },
+    "SBA": {
+      "alpha": 0.2
+    },
+    "TSB": {
+      "alpha": 0.2,
+      "beta": 0.1
+    }
+  },
+  "regla_seleccion": "clasificador por Brier OOF; magnitud por MSE OOF en positivas; umbral y features por MSE final OOF",
+  "origen_seleccion": "TRAIN/CV temporal exclusivamente",
+  "fecha_corte": "2026-01-01",
+  "n_splits": 3,
+  "train_filas": 15170,
+  "train_fin": "2025-12-28 00:00:00",
+  "umbrales_candidatos": [
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "alphas_candidatos": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "semilla": 42,
+  "seleccion_guardada_utc": "2026-09-20T18:48:51.672623+00:00",
+  "regla_magnitud": "max(0, predicción de magnitud) aplicada igual en CV y TEST, fijada antes de evaluar",
+  "sha256_train": "2588d2edf7a5835f0a456501409881b47f7d9d5b442ced957423e404ac43830c"
+}
