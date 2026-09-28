@@ -1,0 +1,7 @@
+Modelo_A,Modelo_B,Series,W,p_raw,p_holm,alpha,Significativo_Holm,Pares_no_cero,Diferencias_cero,Zero_method,Metodo,Alternativa,Correccion_continuidad
+ARIMA (Optimizado ADF/AIC),Regresión Lineal,129,2433.0,3.5344226217486033e-05,0.0002120653573049162,0.05,True,129,0,wilcox,asymptotic,two-sided,False
+ARIMA (Optimizado ADF/AIC),Random Forest,129,3202.0,0.01989452965572004,0.03005116088304839,0.05,True,129,0,wilcox,asymptotic,two-sided,False
+ARIMA (Optimizado ADF/AIC),XGBoost,129,2795.0,0.0010123333216305347,0.004049333286522139,0.05,True,129,0,wilcox,asymptotic,two-sided,False
+Regresión Lineal,Random Forest,129,2529.0,9.21749116313766e-05,0.000460874558156883,0.05,True,129,0,wilcox,asymptotic,two-sided,False
+Regresión Lineal,XGBoost,129,2958.0,0.003709238550644952,0.011127715651934857,0.05,True,129,0,wilcox,asymptotic,two-sided,False
+Random Forest,XGBoost,129,3158.0,0.015025580441524196,0.03005116088304839,0.05,True,129,0,wilcox,asymptotic,two-sided,False

@@ -1,0 +1,29 @@
+{
+  "version": "significancia_mae_serie_v1",
+  "commit_base": "55d4b63844e9078df1f15afe5f954ca96e941359",
+  "versiones": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "statsmodels": "0.15.0"
+  },
+  "alpha": 0.05,
+  "wilcoxon": {
+    "method": "asymptotic",
+    "zero_method": "wilcox",
+    "correction": false,
+    "alternative": "two-sided"
+  },
+  "entradas_sha256": {
+    "metricas_por_serie.csv": "095dc5adfa80790474df4aef271034b86af1a9eb927ecb0b7ef5bbf2def4feda",
+    "predicciones_comunes.csv": "33e68d6669a8f8a9abaea166a4236b524032872a6a106529beebec3ba162afdc",
+    "comparacion_modelos_comun.csv": "8628fc19aaf1ac55e78013e245085900648faac555fc40e9d88877adb0e31bdb"
+  },
+  "salidas_sha256": {
+    "significancia_friedman.csv": "8ae53b6dbd1f720ad675fe2213d9ebe902b2dbbdbaa7afed8f88f669d3709a77",
+    "significancia_wilcoxon_holm.csv": "674648cf1cde42c3e2b4c9cac16335e0f9849d1a8dca141c7365618d05cbfef0",
+    "rangos_mae_por_modelo.csv": "862654cd9f3cc5488639513696a64fbd3c2281abc6806f8f3792ada0d0d739d6"
+  },
+  "informe_sha256": "75688eda1329b95249c59448b9789148d643ca7f5c8a315cb1cd73572a827961",
+  "codigo_sha256": "710bf26e96a21302cc8b6b5fa47a564fd53b705683a15613312136ff5714823b"
+}
