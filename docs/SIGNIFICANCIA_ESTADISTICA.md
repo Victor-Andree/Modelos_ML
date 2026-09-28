@@ -50,7 +50,7 @@ ARIMA conserva pronóstico multi-step desde origen fijo; ML usa historia disponi
 
 ## Integridad y reproducción
 
-Se verifican claves idénticas, 129 series, cuatro modelos, MAE finito, 3444 semanas comunes por modelo, domingos W-SUN y comienzo de cada semana desde 2026-01-01. Se recalculan MAE por serie y métricas globales exclusivamente para validarlas contra sus CSV. Los hashes SHA256 de los 201 archivos previos se comprueban antes y después. Las métricas globales permanecen exactamente iguales en sus archivos originales.
+Se verifican claves idénticas, 129 series, cuatro modelos, MAE finito, 3444 semanas comunes por modelo, domingos W-SUN y comienzo de cada semana desde 2026-01-01. Se recalculan MAE por serie y métricas globales exclusivamente para validarlas contra sus CSV. Los hashes SHA256 de los 201 archivos previos se comprueban antes y después. Sólo para `.gitattributes` se normalizan finales de línea LF/CRLF impuestos por Git; todos los archivos experimentales se verifican byte a byte. Las métricas globales permanecen exactamente iguales en sus archivos originales.
 
 Ejecutar desde la raíz: `python scripts/analizar_significancia_modelos.py`. Pruebas: `python -m unittest test_significancia_modelos -v`. El script sólo regenera los tres CSV nuevos, este documento y el manifiesto nuevo. La instantánea de integridad inicial no se regenera.
 

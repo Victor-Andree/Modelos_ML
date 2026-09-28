@@ -1,7 +1,7 @@
 {
   "commit_base": "55d4b63844e9078df1f15afe5f954ca96e941359",
   "archivos": {
-    ".gitattributes": "d9048e184d2ded1a25999008109dde12f31ef646b82fec53f6d2a16bed0403e2",
+    ".gitattributes": "27f271e38c580228d10b4c12dfdf46788798e2fb7e7699e241e1f5d935033df3",
     ".gitignore": "be8735e5b79376579fa453db9193abcf8266585cd23ba215101eb1900ab8dcac",
     "README.md": "c56f95972c289ad51af5c0bd8c8796792b1f242f5f3e95f8014fbf762b9afdeb",
     "app.py": "33b2de0adfe433f5cd5cd7e736ceae22d84c141a8cdd35d7b789b81d8f43cf6b",
@@ -202,5 +202,8 @@
     "test_comparacion_comun.py": "95646e127d2a4e23ffc4bf675c7a0947854f528f1bafbcebffcf08f9f64d3981",
     "test_demanda_semanal.py": "a59a6c3f08ee9b8a699601bdb1cf6c33ee57491fec8188cc8394c24e5bcb520e",
     "test_extension_intermitente.py": "87fa602f747fb1a024b449cbc5f65315191f73ffa916d3df5cc734105b2690a0"
-  }
+  },
+  "normalizar_eol": [
+    ".gitattributes"
+  ]
 }
