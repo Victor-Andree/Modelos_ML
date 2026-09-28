@@ -1,0 +1,2 @@
+Prueba,Variable,Series,Modelos,Chi2,gl,p_value,Kendall_W,alpha,Significativo
+Friedman,MAE por serie,129,4,57.80930232558126,3,1.7263747623082205e-12,0.14937804218496448,0.05,True
