@@ -1,0 +1,5 @@
+Categoria_ABC,productos,cantidad,porcentaje_productos,porcentaje_volumen,porcentaje_volumen_acumulado
+A (Alta Rotación),2,2351,14.285714285714285,72.13869285056765,72.13869285056765
+B (Rotación Media),4,702,28.57142857142857,21.540349800552317,93.67904265111997
+C (Baja Rotación),8,206,57.14285714285714,6.320957348880024,100.0
+Total,14,3259,100.0,100.0,100.0
