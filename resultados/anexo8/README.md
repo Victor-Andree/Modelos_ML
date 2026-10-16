@@ -1,6 +1,6 @@
 # ANEXO 8. RESULTADOS COMPARATIVOS SOBRE LA POBLACIÓN COMÚN DE EVALUACIÓN
 
-Base: `codex/poblacion-comun-demanda-depurada`, commit `629e36f` (incluye ABC actualizado). Rama de trabajo: `codex/cierre-anexo8-mae-only`.
+Este anexo consolida los resultados finales incorporados en la rama principal del repositorio, incluyendo la auditoría ABC depurada y la evaluación comparativa con líneas base.
 
 ## Poblaciones y fuentes
 
@@ -22,7 +22,7 @@ Se calculan localmente MAE = media de errores absolutos, RMSE = raíz de la medi
 
 Los CSV detallados mantienen precisión completa. Sólo `tabla_anexo8.csv` presenta cuatro decimales. El predictor cero puede tener MAE reducido por la abundancia de ceros, pero RMSE mayor y R² negativo; no se declara superioridad a partir de una métrica aislada.
 
-ARIMA conserva origen fijo multi-step, mientras ML y Persistencia utilizan historia semanal observada y Media histórica permanece fija. La igualdad de población no elimina estas diferencias de protocolo. El periodo TEST ya había sido examinado: no es validación externa nueva.
+ARIMA conserva un esquema de pronóstico multi-step desde un origen fijo, mientras que los modelos de Machine Learning y la línea base de persistencia utilizan historia semanal observada, y la media histórica permanece fija durante TEST.
 
 **No se reentrenó ni recalibró ningún modelo. Las líneas base no participaron en la selección de los cuatro modelos principales.** Se conservan datasets, predicciones, hiperparámetros, particiones, análisis históricos, ABC, Streamlit y pruebas de significancia.
 
