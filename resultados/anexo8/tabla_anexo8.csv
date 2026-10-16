@@ -1,0 +1,8 @@
+Modelo/Referencia,Tipo,MAE,RMSE,R2,DE_MAE_serie,Observaciones,Series
+Regresión Lineal,Modelo,0.2306,0.5396,0.3219,0.3196,3444,129
+Random Forest,Modelo,0.2270,0.5487,0.2989,0.3275,3444,129
+XGBoost,Modelo,0.2252,0.5489,0.2984,0.3243,3444,129
+ARIMA,Modelo,0.2363,0.5797,0.2175,0.3605,3444,129
+Predictor cero,Línea base,0.2009,0.6854,-0.0940,0.3964,3444,129
+Persistencia,Línea base,0.2427,0.7225,-0.2157,0.4300,3444,129
+Media histórica,Línea base,0.2207,0.5474,0.3022,0.3293,3444,129
